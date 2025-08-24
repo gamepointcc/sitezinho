@@ -34,17 +34,22 @@
     nav {
       background-color: #29004f;
       padding: 10px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
     nav a {
       color: #feae34;
       text-decoration: none;
-      margin: 0 20px;
+      margin: 5px 15px;
       font-size: 12px;
+      text-align: center;
     }
 
     section {
       padding: 40px 20px;
+      text-align: center;
     }
 
     .sobre {
@@ -54,11 +59,14 @@
       border: 2px dashed #f84b90;
       width: 90%;
       max-width: 600px;
+      text-align: center;
+      box-sizing: border-box;
     }
 
     .sobre p {
       font-size: 12px;
       line-height: 1.8;
+      text-align: center;
     }
 
     .btn {
@@ -70,18 +78,20 @@
       margin-top: 20px;
       border: 2px solid #feae34;
       font-size: 10px;
+      text-align: center;
     }
 
-  
     .img-cardapio, .img-mapa {
-      width: 665px;   
+      max-width: 100%;   
+      width: 665px;      
       height: auto;   
       margin: 10px auto;
       display: block;
       border: 4px solid #f84b90;
-}
+    }
 
     .logo-escola {
+      max-width: 100%;
       width: 180px;   
       height: auto;   
       display: block;
@@ -96,9 +106,11 @@
       width: 90%;
       max-width: 300px;
       text-align: center;
+      box-sizing: border-box;
     }
 
     .broche img {
+      max-width: 100%;
       width: 300px;
       height: auto;
       margin-bottom: 15px;
@@ -108,13 +120,23 @@
       font-size: 12px;
       line-height: 1.6;
       color: #feae34;
+      text-align: center;
     }
-
 
     footer {
       background-color: #1a002e;
       padding: 20px;
       font-size: 10px;
+      text-align: center;
+    }
+
+    /* Ajuste global de imagens */
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     @media screen and (max-width: 600px) {
@@ -123,15 +145,20 @@
         margin: 10px 0;
       }
     
- .img-parceria {
-  max-width: 100%;
-  width: 100px !important;   /* força o tamanho */
-  height: auto !important;   /* mantém proporção */
-  display: block;
-  margin: 15px auto;
-  border: 3px solid #feae34;
-}
+      .img-parceria {
+        max-width: 100%;
+        width: 250px;   
+        height: auto;   
+        display: block;
+        margin: 15px auto;
+        border: 3px solid #feae34;
+      }
+    }
 
+    /* -------- CENTRALIZAÇÃO GERAL -------- */
+    h1, h2, p {
+      text-align: center;
+    }
 
   </style>
 </head>
@@ -141,7 +168,6 @@
     <img src="img/logo.png" alt="Logo da Escola" class="logo-escola">
     <h1>GAME POINT</h1>
     <p>Jogue, Divirta-se, Saboreie!</p>
-
   </header>
 
   <nav>
@@ -159,7 +185,6 @@
     <p>Contamos com uma seleção de jogos de fliperama e uma lanchonete com hambúrgueres saborosos, preparados com ingredientes de qualidade.</p>
     <p>Venha jogar, aproveitar e saborear!</p>
     <p>Horário: Seg–Sáb (13h–22h) | Dom (13h–20h)</p>
-
   </section>
 
   <section id="broche" class="broche">
@@ -167,34 +192,30 @@
     <p>"Um pedacinho dos clássicos no seu look! Broche do fliperama disponível na loja física, porque quem ama jogos nunca perde o estilo."</p>
   </section>
 
- <section id="cardapio digital">
-  <h2>Cardápio Digital</h2>
-  <img src="img/cardapio.png" class="img-cardapio">
-</section>
+  <section id="cardapio digital">
+    <h2>Cardápio Digital</h2>
+    <img src="img/cardapio.png" class="img-cardapio">
+  </section>
 
-<section id="localizacao">
-  <h2>Localização</h2>
-  <img src="img/mapa.jpg" class="img-mapa">
-  <p><a class="btn" href="https://maps.app.goo.gl/kZGdPRdeEBcbUijq7" target="_blank">Abrir no Google Maps</a></p>
-</section>
+  <section id="localizacao">
+    <h2>Localização</h2>
+    <img src="img/mapa.jpg" class="img-mapa">
+    <p><a class="btn" href="https://maps.app.goo.gl/kZGdPRdeEBcbUijq7" target="_blank">Abrir no Google Maps</a></p>
+  </section>
 
- 
   <section id="parceria" class="sobre">
-  <h2>Game Point + InfoTechStore!</h2>
-    <img src="img/parceria.png">
+    <h2>Game Point + InfoTechStore!</h2>
+    <img src="img/parceria.png" class="img-parceria">
     <p>Fechamos uma super parceria com a <strong>InfoTechStore</strong> para trazer vantagens para você:</p>
     <p>Clientes da InfoTechStore que fizerem uma compra de <strong>R$200</strong> ganham <strong>15% de desconto</strong> na compra de tickets na Game Point.</p>
     <p>Vem se divertir, aproveitar os benefícios e conferir tudo que essa parceria oferece!</p>
-</section>
-
+  </section>
 
   <section id="contato">
     <h2>Contato</h2>
     <p>Instagram: <a class="btn" href="https://instagram.com/pointgame.flip" target="_blank">@pointgame.flip</a></p>
     <p>Email: <a class="btn" href="mailto:pointgamecontato@gmail.com">pointgamecontato@gmail.com</a></p>
   </section>
-
-  
 
   <footer>
     &copy; 2025 Game Point - Todos os direitos reservados.
