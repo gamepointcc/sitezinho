@@ -31,20 +31,29 @@
       color: #feae34;
     }
 
+    /* -------- MENU DE NAVEGAÇÃO -------- */
     nav {
       background-color: #29004f;
       padding: 10px;
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
+      gap: 20px; /* espaço entre links no PC */
     }
 
     nav a {
       color: #feae34;
       text-decoration: none;
-      margin: 5px 15px;
       font-size: 12px;
       text-align: center;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      background-color: #f84b90;
+      color: #fff;
     }
 
     section {
@@ -139,12 +148,28 @@
       margin-right: auto;
     }
 
+    /* -------- CENTRALIZAÇÃO GERAL -------- */
+    h1, h2, p {
+      text-align: center;
+    }
+
+    /* -------- MENU NO CELULAR -------- */
     @media screen and (max-width: 600px) {
+      nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px; /* espaço entre links no celular */
+      }
+
       nav a {
         display: block;
-        margin: 10px 0;
+        width: 100%;
+        max-width: 250px;
+        background-color: #3b0a60;
+        border: 1px solid #feae34;
+        padding: 10px;
       }
-    
+
       .img-parceria {
         max-width: 100%;
         width: 250px;   
@@ -154,12 +179,6 @@
         border: 3px solid #feae34;
       }
     }
-
-    /* -------- CENTRALIZAÇÃO GERAL -------- */
-    h1, h2, p {
-      text-align: center;
-    }
-
   </style>
 </head>
 <body>
