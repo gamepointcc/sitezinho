@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Point | Fliperama & Lanches</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Press Start 2P', cursive;
+      background-color: #1a0033;
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      background-color: #2a0055;
+      padding: 30px 10px;
+      text-shadow: 2px 2px #f84b90;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #feae34;
+    }
+
+    nav {
+      background-color: #29004f;
+      padding: 10px;
+    }
+
+    nav a {
+      color: #feae34;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 12px;
+    }
+
+    section {
+      padding: 40px 20px;
+    }
+
+    .sobre {
+      background-color: #3b0a60;
+      margin: 30px auto;
+      padding: 20px;
+      border: 2px dashed #f84b90;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    .sobre p {
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .btn {
+      background-color: #f84b90;
+      color: white;
+      padding: 10px 15px;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      border: 2px solid #feae34;
+      font-size: 10px;
+    }
+
+  
+    .img-cardapio, .img-mapa {
+      width: 665px;   
+      height: auto;   
+      margin: 10px auto;
+      display: block;
+      border: 4px solid #f84b90;
+}
+
+    .logo-escola {
+      width: 180px;   
+      height: auto;   
+      display: block;
+      margin: 0 auto 15px auto; 
+    }
+
+    .broche {
+      background-color: #3b0a60;
+      margin: 25px auto;
+      padding: 10px;
+      border: 2px dashed #feae34;
+      width: 90%;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .broche img {
+      width: 300px;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .broche p {
+      font-size: 12px;
+      line-height: 1.6;
+      color: #feae34;
+    }
+
+
+    footer {
+      background-color: #1a002e;
+      padding: 20px;
+      font-size: 10px;
+    }
+
+    @media screen and (max-width: 600px) {
+      nav a {
+        display: block;
+        margin: 10px 0;
+      }
+    
+ .img-parceria {
+  max-width: 100%;
+  width: 100px !important;   /* força o tamanho */
+  height: auto !important;   /* mantém proporção */
+  display: block;
+  margin: 15px auto;
+  border: 3px solid #feae34;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="img/logo.png" alt="Logo da Escola" class="logo-escola">
+    <h1>GAME POINT</h1>
+    <p>Jogue, Divirta-se, Saboreie!</p>
+
+  </header>
+
+  <nav>
+    <a href="#sobre">Sobre</a>
+    <a href="#broche">Broche do Fliperama</a>
+    <a href="#cardapio digital">Cardápio Digital</a>
+    <a href="#localizacao">Localização</a>
+    <a href="#parceria">Parceria</a>
+    <a href="#contato">Contato</a>
+  </nav>
+
+  <section id="sobre" class="sobre">
+    <h2>Sobre Nós</h2>
+    <p>O Game Point é o lugar ideal para quem busca diversão e um bom hambúrguer.</p>
+    <p>Contamos com uma seleção de jogos de fliperama e uma lanchonete com hambúrgueres saborosos, preparados com ingredientes de qualidade.</p>
+    <p>Venha jogar, aproveitar e saborear!</p>
+    <p>Horário: Seg–Sáb (13h–22h) | Dom (13h–20h)</p>
+
+  </section>
+
+  <section id="broche" class="broche">
+    <img src="img/broche.png" alt="Broche do Fliperama">
+    <p>"Um pedacinho dos clássicos no seu look! Broche do fliperama disponível na loja física, porque quem ama jogos nunca perde o estilo."</p>
+  </section>
+
+ <section id="cardapio digital">
+  <h2>Cardápio Digital</h2>
+  <img src="img/cardapio.png" class="img-cardapio">
+</section>
+
+<section id="localizacao">
+  <h2>Localização</h2>
+  <img src="img/mapa.jpg" class="img-mapa">
+  <p><a class="btn" href="https://maps.app.goo.gl/kZGdPRdeEBcbUijq7" target="_blank">Abrir no Google Maps</a></p>
+</section>
+
+ 
+  <section id="parceria" class="sobre">
+  <h2>Game Point + InfoTechStore!</h2>
+    <img src="img/parceria.png">
+    <p>Fechamos uma super parceria com a <strong>InfoTechStore</strong> para trazer vantagens para você:</p>
+    <p>Clientes da InfoTechStore que fizerem uma compra de <strong>R$200</strong> ganham <strong>15% de desconto</strong> na compra de tickets na Game Point.</p>
+    <p>Vem se divertir, aproveitar os benefícios e conferir tudo que essa parceria oferece!</p>
+</section>
+
+
+  <section id="contato">
+    <h2>Contato</h2>
+    <p>Instagram: <a class="btn" href="https://instagram.com/pointgame.flip" target="_blank">@pointgame.flip</a></p>
+    <p>Email: <a class="btn" href="mailto:pointgamecontato@gmail.com">pointgamecontato@gmail.com</a></p>
+  </section>
+
+  
+
+  <footer>
+    &copy; 2025 Game Point - Todos os direitos reservados.
+  </footer>
+
+</body>
+</html>
