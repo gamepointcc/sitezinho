@@ -295,9 +295,10 @@
     const buttons = document.querySelectorAll("nav button");
     const sections = document.querySelectorAll("section");
 
- buttons.forEach(btn => {
+buttons.forEach(btn => {
   btn.addEventListener("click", () => {
-    clickSound.currentTime = 0;
+    clickSound.pause();            // garante que para o som atual
+    clickSound.currentTime = 0;    // volta para o início
     clickSound.play().catch(err => {
       console.log("Erro ao tocar som:", err);
     });
@@ -308,8 +309,10 @@
   });
 });
 
+
   </script>
 </body>
 </html>
+
 
 
