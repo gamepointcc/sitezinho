@@ -6,240 +6,305 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
+    /* Reset básico */
+    * {margin: 0; padding: 0; box-sizing: border-box;}
     body {
-      margin: 0;
       font-family: 'Press Start 2P', cursive;
-      background-color: #1a0033;
+      background: linear-gradient(135deg, #1a0033 0%, #2a0055 65%, #7A378B 100%);
       color: white;
-      text-align: center;
+      overflow-x: hidden;
     }
 
     header {
-      background-color: #2a0055;
-      padding: 30px 10px;
+      background: linear-gradient(90deg, #2a0055, #3b0a60);
+      padding: 25px 10px;
+      text-align: center;
+      border-bottom: 3px solid #f84b90;
       text-shadow: 2px 2px #f84b90;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 28px;
+    header h1 { font-size: 32px; letter-spacing: 2px; }
+    header p { color: #feae34; font-size: 14px; margin-top: 8px; }
+
+    .logo-escola {
+      width: 160px;
+      margin-bottom: 10px;
+      filter: drop-shadow(2px 2px 6px #000);
     }
 
-    header p {
-      margin-top: 10px;
-      font-size: 15px;
-      color: #feae34;
-    }
-
-    /* -------- MENU DE NAVEGAÇÃO -------- */
+    /* Menu lateral estilo moderno */
     nav {
-      background-color: #29004f;
-      padding: 10px;
       display: flex;
       justify-content: center;
+      gap: 15px;
+      background-color: #29004f;
+      padding: 10px;
       flex-wrap: wrap;
-      gap: 20px; /* espaço entre links no PC */
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    nav a {
-      color: #feae34;
-      text-decoration: none;
-      font-size: 12px;
-      text-align: center;
-      padding: 8px 12px;
-      border-radius: 6px;
+    nav button {
+      background-color: #f84b90;
+      border: 2px solid #feae34;
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+      padding: 11px 15px;
+      cursor: pointer;
       transition: 0.3s;
     }
 
-    nav a:hover {
-      background-color: #f84b90;
-      color: #fff;
+    nav button:hover {
+      background-color: #feae34;
+      color: #29004f;
     }
 
+    /* Seções */
     section {
-      padding: 40px 20px;
-      text-align: center;
+      display: none;
+      padding: 50px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      animation: fadeIn 0.6s ease;
     }
 
-    .sobre {
+    section.active { display: block; }
+
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    h2 { color: #feae34; margin-bottom: 20px; text-shadow: 1px 1px #000; }
+
+    .card, .broche, .manual, .parceria {
       background-color: #3b0a60;
-      margin: 30px auto;
-      padding: 20px;
+      padding: 25px;
       border: 2px dashed #f84b90;
-      width: 90%;
-      max-width: 600px;
-      text-align: center;
-      box-sizing: border-box;
+      border-radius: 12px;
+      box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
+      margin-bottom: 25px;
     }
 
-    .sobre p {
-      font-size: 12px;
-      line-height: 1.8;
-      text-align: center;
+    .card img, .broche img, .parceria img {
+      width: 100%;
+      max-width: 650px;
+      border-radius: 10px;
+      border: 4px solid #f84b90;
+      margin: 15px auto;
+      display: block;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 650px;
+      height: 400px;
+      border: 4px solid #f84b90;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      margin: 15px auto;
+      display: block;
     }
 
     .btn {
+      display: inline-block;
+      padding: 10px 15px;
+      border: 2px solid #feae34;
+      border-radius: 8px;
       background-color: #f84b90;
       color: white;
-      padding: 10px 15px;
       text-decoration: none;
-      display: inline-block;
-      margin-top: 20px;
-      border: 2px solid #feae34;
+      margin-top: 10px;
       font-size: 10px;
-      text-align: center;
+      transition: 0.3s;
     }
 
-    .img-cardapio, .img-mapa {
-      max-width: 100%;   
-      width: 665px;      
-      height: auto;   
-      margin: 10px auto;
-      display: block;
-      border: 4px solid #f84b90;
-    }
-
-    .logo-escola {
-      max-width: 100%;
-      width: 180px;   
-      height: auto;   
-      display: block;
-      margin: 0 auto 15px auto; 
-    }
-
-    .broche {
-      background-color: #3b0a60;
-      margin: 25px auto;
-      padding: 10px;
-      border: 2px dashed #feae34;
-      width: 90%;
-      max-width: 300px;
-      text-align: center;
-      box-sizing: border-box;
-    }
-
-    .broche img {
-      max-width: 100%;
-      width: 300px;
-      height: auto;
-      margin-bottom: 15px;
-    }
-
-    .broche p {
-      font-size: 12px;
-      line-height: 1.6;
-      color: #feae34;
-      text-align: center;
+    .btn:hover {
+      background-color: #feae34;
+      color: #29004f;
     }
 
     footer {
       background-color: #1a002e;
       padding: 20px;
       font-size: 10px;
+      border-top: 3px solid #f84b90;
       text-align: center;
     }
 
-    /* Ajuste global de imagens */
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
+#placar-flutuante {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: rgba(59, 10, 96, 0.95);
+  border: 2px dashed #f84b90;
+  padding: 20px;
+  border-radius: 12px;
+  width: 260px; /* largura suficiente */
+  max-width: 90%;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.5);
+  font-size: 11px;
+  text-align: left;
+  z-index: 1001;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
 
-    /* -------- CENTRALIZAÇÃO GERAL -------- */
-    h1, h2, p {
-      text-align: center;
-    }
+#placar-flutuante ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 5px 0 0 0;
+}
 
-    /* -------- MENU NO CELULAR -------- */
-    @media screen and (max-width: 600px) {
-      nav {
-        flex-direction: column;
-        align-items: center;
-        gap: 12px; /* espaço entre links no celular */
-      }
+#placar-flutuante ul li {
+  margin: 6px 0;
+  line-height: 1.4em;
+  white-space: nowrap; /* impede quebra entre número e nome */
+  overflow: hidden;
+  text-overflow: ellipsis; /* corta texto se muito longo */
+}
 
-      nav a {
-        display: block;
-        width: 100%;
-        max-width: 250px;
-        background-color: #3b0a60;
-        border: 1px solid #feae34;
-        padding: 10px;
-      }
 
-      .img-parceria {
-        max-width: 100%;
-        width: 250px;   
-        height: auto;   
-        display: block;
-        margin: 15px auto;
-        border: 3px solid #feae34;
-      }
+/* Responsividade */
+@media screen and (max-width: 600px) {
+  #placar-flutuante {
+    width: 90%;
+    top: 10px;
+    right: 5%;
+    font-size: 10px;
+  }
+}
+
     }
   </style>
 </head>
 <body>
 
+  <!-- Placar flutuante -->
+  <div id="placar-flutuante">
+  <h3>Top Players</h3>
+  <ul>
+    <li>1. NarutoRamenKing</li>
+    <li>2. GokuSJ4_Maníaco</li>
+    <li>3. MandysCandy</li>
+  </ul>
+</div>
+
+
   <header>
-    <img src="img/logo.png" alt="Logo da Escola" class="logo-escola">
+    <img src="img/logo.png" alt="Logo" class="logo-escola">
     <h1>GAME POINT</h1>
     <p>Jogue, Divirta-se, Saboreie!</p>
   </header>
 
   <nav>
-    <a href="#sobre">Sobre</a>
-    <a href="#broche">Broche do Fliperama</a>
-    <a href="#cardapio digital">Cardápio Digital</a> 
-    <a href="#localizacao">Localização</a> 
-    <a href="#parceria">Parceria</a> 
-    <a href="#contato">Contato</a> 
+    <button data-target="sobre">Sobre</button>
+    <button data-target="broche">Broche</button>
+    <button data-target="cardapio">Cardápio</button>
+    <button data-target="manual">Manual</button>
+    <button data-target="localizacao">Localização</button>
+    <button data-target="parceria">Parceria</button>
+    <button data-target="contato">Contato</button>
   </nav>
 
-  <section id="sobre" class="sobre">
+  <!-- Seções -->
+<section id="sobre" class="active">
+  <div class="card">
     <h2>Sobre Nós</h2>
     <p>O Game Point é o lugar ideal para quem busca diversão e um bom hambúrguer.</p>
-    <p>Contamos com uma seleção de jogos de fliperama e uma lanchonete com hambúrgueres saborosos, preparados com ingredientes de qualidade.</p>
-    <p>Venha jogar, aproveitar e saborear!</p>
-    <p>Horário: Seg–Sáb (13h–22h) | Dom (13h–20h)</p>
+    <p>Contamos com uma seleção de jogos de fliperama e uma lanchonete com hambúrgueres saborosos.</p>
+  </div>
+
+  <div class="card">
+    <h2>Horário de Funcionamento</h2>
+    <p> Segunda a Sábado: 13h – 22h </p>
+    <p> Domingo: 13h – 20h </p>
+  </div>
+</section>
+
+
+  <section id="broche">
+    <div class="broche">
+      <h2>Broche do Fliperama</h2>
+      <img src="img/broche.png" alt="Broche">
+      <p>Um pedacinho dos clássicos no seu look! Disponível na loja física.</p>
+    </div>
   </section>
 
-  <section id="broche" class="broche">
-    <img src="img/broche.png" alt="Broche do Fliperama">
-    <p>"Um pedacinho dos clássicos no seu look! Broche do fliperama disponível na loja física, porque quem ama jogos nunca perde o estilo."</p>
+  <section id="cardapio">
+    <div class="card">
+      <h2>Cardápio Digital</h2>
+      <img src="img/cardapio.png" alt="Cardápio">
+    </div>
   </section>
 
-  <section id="cardapio digital">
-    <h2>Cardápio Digital</h2>
-    <img src="img/cardapio.png" class="img-cardapio">
+  <section id="manual">
+    <div class="manual">
+      <h2>Manual do Jogador</h2>
+      <ul>
+        <li>🎮 Proibido comer hambúrguer dentro das máquinas.</li>
+        <li>🍔 Se derrubar ketchup no joystick, paga rodada pra galera.</li>
+        <li>👾 Se a máquina ganhar de você, ela sobe de nível automaticamente.</li>
+        <li>🕹 Não vale usar "Hadouken" fora do Street Fighter.</li>
+        <li>⚡ Quem gritar "Kamehameha" muito alto, ganha ficha extra.</li>
+        <li>🔥 Tiltar no pinball gera banimento temporário de 10 minutos.</li>
+        <li>🍟 Batata frita é item de cura +20HP (somente na lanchonete).</li>
+      </ul>
+    </div>
   </section>
 
   <section id="localizacao">
-    <h2>Localização</h2>
-    <img src="img/mapa.jpg" class="img-mapa">
-    <p><a class="btn" href="https://maps.app.goo.gl/kZGdPRdeEBcbUijq7" target="_blank">Abrir no Google Maps</a></p>
+    <div class="card">
+      <h2>Localização</h2>
+      <iframe 
+        src="https://maps.google.com/maps?q=-22.9414575,-43.6844605&z=17&output=embed" 
+        allowfullscreen="" 
+        loading="lazy">
+      </iframe>
+    </div>
   </section>
 
-  <section id="parceria" class="sobre">
-    <h2>Game Point + InfoTechStore!</h2>
-    <img src="img/parceria.png" class="img-parceria">
-    <p>Fechamos uma super parceria com a <strong>InfoTechStore</strong> para trazer vantagens para você:</p>
-    <p>Clientes da InfoTechStore que fizerem uma compra de <strong>R$200</strong> ganham <strong>15% de desconto</strong> na compra de tickets na Game Point.</p>
-    <p>Vem se divertir, aproveitar os benefícios e conferir tudo que essa parceria oferece!</p>
+  <section id="parceria">
+    <div class="parceria">
+      <h2>Game Point + InfoTechStore</h2>
+      <img src="img/parceria.png" alt="Parceria">
+      <p>Clientes que comprarem R$200 ganham 15% de desconto na compra de tickets na Game Point.</p>
+    </div>
   </section>
 
   <section id="contato">
-    <h2>Contato</h2>
-    <p>Instagram: <a class="btn" href="https://instagram.com/pointgame.flip" target="_blank">@pointgame.flip</a></p>
-    <p>Email: <a class="btn" href="mailto:pointgamecontato@gmail.com">pointgamecontato@gmail.com</a></p>
+    <div class="card">
+      <h2>Contato</h2>
+      <p>Instagram: <a class="btn" href="https://instagram.com/pointgame.flip" target="_blank">@pointgame.flip</a></p>
+      <p>Email: <a class="btn" href="mailto:pointgamecontato@gmail.com">pointgamecontato@gmail.com</a></p>
+    </div>
   </section>
 
   <footer>
     &copy; 2025 Game Point - Todos os direitos reservados.
   </footer>
 
+  <!-- Som de clique -->
+  <audio id="clickSound" src="sounds/mouse-click.mp3" preload="auto"></audio>
+
+  <script>
+    const clickSound = document.getElementById("clickSound");
+    const buttons = document.querySelectorAll("nav button");
+    const sections = document.querySelectorAll("section");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        clickSound.currentTime = 0;
+        clickSound.play();
+
+        sections.forEach(sec => sec.classList.remove("active"));
+        const target = document.getElementById(btn.dataset.target);
+        target.classList.add("active");
+      });
+    });
+  </script>
 </body>
 </html>
-
