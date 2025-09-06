@@ -288,24 +288,28 @@
   </footer>
 
   <!-- Som de clique -->
-  <audio id="clickSound" src="sounds/mouse-click-sound-233951.mp3"  preload="auto"></audio>
+ <audio id="clickSound" src="sounds/mouse-click-sound-233951.mp3" preload="auto"></audio>
 
   <script>
     const clickSound = document.getElementById("clickSound");
     const buttons = document.querySelectorAll("nav button");
     const sections = document.querySelectorAll("section");
 
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        clickSound.currentTime = 0;
-        clickSound.play();
-
-        sections.forEach(sec => sec.classList.remove("active"));
-        const target = document.getElementById(btn.dataset.target);
-        target.classList.add("active");
-      });
+ buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    clickSound.currentTime = 0;
+    clickSound.play().catch(err => {
+      console.log("Erro ao tocar som:", err);
     });
+
+    sections.forEach(sec => sec.classList.remove("active"));
+    const target = document.getElementById(btn.dataset.target);
+    target.classList.add("active");
+  });
+});
+
   </script>
 </body>
 </html>
+
 
