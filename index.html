@@ -140,11 +140,10 @@
     #placar-flutuante ul { list-style: none; padding-left: 0; margin: 5px 0 0 0; }
     #placar-flutuante ul li { margin: 6px 0; }
 
-/* Fita de tickets */
 .ticket-strip {
   position: fixed;
-  top: -100%;                /* começa fora da tela */
-  width: 50px;              /* largura grande, tamanho real */
+  top: -100%;
+  width: 30px;   /* diminui o tamanho do ticket */
   z-index: 60;
   animation: stripFall 6s linear forwards;
   pointer-events: none;
@@ -153,8 +152,9 @@
 .ticket-strip img {
   display: block;
   width: 100%;
-  margin-bottom: -20px;      /* cola os tickets, sem espaço */
+  margin-bottom: -10px; /* ajusta o espaçamento entre tickets */
 }
+
 
 @keyframes stripFall {
   from { transform: translateY(-100%); }
@@ -342,6 +342,7 @@
   </script>
 </body>
 </html>
+
 
 
 
