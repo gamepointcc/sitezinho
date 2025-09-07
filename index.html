@@ -290,8 +290,8 @@
   <audio id="clickSound" src="sounds/mouse-click-sound-233951.mp3" preload="auto"></audio>
   <audio id="successSound" src="sounds/material-gold-394476.mp3" preload="auto"></audio>
 
-  <!-- Música de fundo -->
-  <audio id="bgMusic" src="sounds/8-bit-game-158815.mp3" autoplay loop preload="auto"></audio>
+    <!-- Música de fundo -->
+  <audio id="bgMusic" src="sounds/8-bit-game-158815.mp3" preload="auto" loop></audio>
 
   <script>
     const clickSound = document.getElementById("clickSound");
@@ -301,20 +301,24 @@
 
     const sections = document.querySelectorAll("section");
 
-    // primeiro clique libera o som no navegador (inclusive música de fundo)
+    // primeiro clique libera sons e música
     document.body.addEventListener("click", () => {
       clickSound.play().catch(() => {});
       clickSound.pause(); clickSound.currentTime = 0;
 
-      // inicia a música de fundo baixinha
-      bgMusic.volume = 0.15; // volume bem baixo
-      bgMusic.play().catch(() => {});
+      // inicia música de fundo
+      bgMusic.volume = 0.15; // volume baixo
+      if (bgMusic.paused) {
+        bgMusic.play().catch(() => {});
+      }
     }, { once: true });
 
-    // som em todos os botões e selects do ticket
+    // som em botões e selects
     buttons.forEach(btn => {
       btn.addEventListener("click", () => {
-        clickSound.pause(); clickSound.currentTime = 0; clickSound.play().catch(()=>{});
+        clickSound.pause();
+        clickSound.currentTime = 0;
+        clickSound.play().catch(()=>{});
       });
     });
 
@@ -327,14 +331,13 @@
       });
     });
 
-    // compra de tickets com som de sucesso
+    // compra de tickets
     function comprarTickets() {
       const tipo = document.getElementById("tipo").value;
       const quantidade = parseInt(document.getElementById("quantidade").value);
 
       if (!quantidade || quantidade < 1) return;
 
-      // toca som de sucesso ANTES do alert (para não ser bloqueado)
       successSound.pause();
       successSound.currentTime = 0;
       successSound.play().catch(()=>{});
@@ -358,3 +361,4 @@
       }
     }
   </script>
+
