@@ -153,8 +153,8 @@
 .ticket-strip img {
   display: block;
   width: 100%;
-  margin-bottom: -5px;     /* cola os tickets */
-  transform: rotate(90deg); /* deixa o ticket de lado */
+  margin-bottom: 10px;     /* cola os tickets */
+
 }
 
 
@@ -324,13 +324,11 @@
     strip.style.left = (i * (window.innerWidth / colunas) + 30) + "px"; // distribui colunas
 
     // cria uma fita de tickets grudados
-    for (let j = 0; j < 10; j++) { // número de tickets por fita
-      for (let j = 0; j < 10; j++) {
+    for (let j = 0; j < 15; j++) { // número de tickets por fita
+      for (let j = 0; j < 15; j++) {
   const ticket = document.createElement("img");
   ticket.src = "img/ticket.png";
   ticket.style.display = "block";
-  ticket.style.transform = `rotate(-90deg)`;   // gira para o lado
-  ticket.style.transformOrigin = "top left";   // ponto de rotação
   strip.appendChild(ticket);
 }
 
@@ -348,6 +346,7 @@
   </script>
 </body>
 </html>
+
 
 
 
