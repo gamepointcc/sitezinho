@@ -329,8 +329,11 @@
     // cria uma fita de tickets grudados
     for (let j = 0; j < 12; j++) { // número de tickets por fita
       const ticket = document.createElement("img");
-      ticket.src = "img/ticket.png"; // imagem real do ticket
-      strip.appendChild(ticket);
+ticket.src = "img/ticket.png";
+ticket.style.transform = `rotate(90deg)`; // deixa o ticket de lado
+ticket.style.display = 'block';
+strip.appendChild(ticket);
+
     }
 
     document.body.appendChild(strip);
@@ -344,6 +347,7 @@
   </script>
 </body>
 </html>
+
 
 
 
