@@ -147,7 +147,7 @@
   width: 400px;   /* tamanho grande realista */
   height: auto;
   z-index: 2000;
-  animation: fall 2s ease-in forwards;
+  animation: fall 8s ease-in forwards;
   pointer-events: none;
   opacity: 0.95;
 }
@@ -163,8 +163,6 @@
   }
 }
 
-
-
     .ticket-form label { display: block; margin: 10px 0 5px; }
     .ticket-form select, .ticket-form input {
       width: 100%; padding: 8px; margin-bottom: 15px;
@@ -177,4 +175,165 @@
   <div id="placar-flutuante">
     <h3>Top Players</h3>
     <ul>
-      <li>1. NarutoRa
+      <li>1. NarutoRamenKing</li>
+      <li>2. GokuSJ4_Maníaco</li>
+      <li>3. MandysCandy</li>
+    </ul>
+  </div>
+
+  <header>
+    <img src="img/logo.png" alt="Logo" class="logo-escola">
+    <h1>GAME POINT</h1>
+    <p>Jogue, Divirta-se, Saboreie!</p>
+  </header>
+
+  <nav>
+    <button data-target="sobre">Sobre</button>
+    <button data-target="broche">Broche</button>
+    <button data-target="cardapio">Cardápio</button>
+    <button data-target="manual">Manual</button>
+    <button data-target="localizacao">Localização</button>
+    <button data-target="parceria">Parceria</button>
+    <button data-target="tickets">Tickets</button>
+    <button data-target="contato">Contato</button>
+  </nav>
+
+  <!-- Seções -->
+  <section id="sobre" class="active">
+    <div class="card">
+      <h2>Sobre Nós</h2>
+      <p>O Game Point é o lugar ideal para quem busca diversão e um bom hambúrguer.</p>
+      <p>Contamos com uma seleção de jogos de fliperama e uma lanchonete com hambúrgueres saborosos.</p>
+    </div>
+    <div class="card">
+      <h2>Horário de Funcionamento</h2>
+      <p>Segunda a Sábado: 13h – 22h</p>
+      <p>Domingo: 13h – 20h</p>
+    </div>
+  </section>
+
+  <section id="broche">
+    <div class="broche">
+      <h2>Broche do Fliperama</h2>
+      <img src="img/broche.png" alt="Broche">
+      <p>Um pedacinho dos clássicos no seu look! Disponível na loja física.</p>
+    </div>
+  </section>
+
+  <section id="cardapio">
+    <div class="card">
+      <h2>Cardápio Digital</h2>
+      <img src="img/cardapio.png" alt="Cardápio">
+    </div>
+  </section>
+
+  <section id="manual">
+    <div class="manual">
+      <h2>Manual do Jogador</h2>
+      <ul>
+        <li>🎮 Proibido comer hambúrguer dentro das máquinas.</li>
+        <li>🍔 Se derrubar ketchup no joystick, paga rodada pra galera.</li>
+        <li>👾 Se a máquina ganhar de você, ela sobe de nível automaticamente.</li>
+        <li>🕹 Não vale usar "Hadouken" fora do Street Fighter.</li>
+        <li>⚡ Quem gritar "Kamehameha" muito alto, ganha ficha extra.</li>
+        <li>🔥 Tiltar no pinball gera banimento temporário de 10 minutos.</li>
+        <li>🍟 Batata frita é item de cura +20HP (somente na lanchonete).</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="localizacao">
+    <div class="card">
+      <h2>Localização</h2>
+      <iframe src="https://maps.google.com/maps?q=-22.9414575,-43.6844605&z=17&output=embed" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <section id="parceria">
+    <div class="parceria">
+      <h2>Game Point + InfoTechStore</h2>
+      <img src="img/parceria.png" alt="Parceria">
+      <p>Clientes que comprarem R$200 ganham 15% de desconto na compra de tickets na Game Point.</p>
+    </div>
+  </section>
+
+  <!-- NOVA SEÇÃO DE TICKETS -->
+  <section id="tickets">
+    <div class="card">
+      <h2>Comprar Tickets</h2>
+      <form class="ticket-form" onsubmit="event.preventDefault(); comprarTickets();">
+        <label for="tipo">Tipo:</label>
+        <select id="tipo" required>
+          <option value="arcade">Arcades</option>
+          <option value="boliche">Boliche</option>
+        </select>
+
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade" min="1" max="50" required>
+
+        <button type="submit" class="btn">Pagar</button>
+      </form>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="card">
+      <h2>Contato</h2>
+      <p>Instagram: <a class="btn" href="https://instagram.com/pointgame.flip" target="_blank">@pointgame.flip</a></p>
+      <p>Email: <a class="btn" href="mailto:pointgamecontato@gmail.com">pointgamecontato@gmail.com</a></p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Game Point - Todos os direitos reservados.
+  </footer>
+
+  <audio id="clickSound" src="sounds/mouse-click-sound-233951.mp3" preload="auto"></audio>
+
+  <script>
+    const clickSound = document.getElementById("clickSound");
+    const buttons = document.querySelectorAll("nav button");
+    const sections = document.querySelectorAll("section");
+
+    document.body.addEventListener("click", () => {
+      clickSound.play().catch(() => {});
+      clickSound.pause(); clickSound.currentTime = 0;
+    }, { once: true });
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        clickSound.pause(); clickSound.currentTime = 0; clickSound.play().catch(()=>{});
+        sections.forEach(sec => sec.classList.remove("active"));
+        const target = document.getElementById(btn.dataset.target);
+        target.classList.add("active");
+      });
+    });
+
+    function comprarTickets() {
+  const tipo = document.getElementById("tipo").value;
+  const quantidade = parseInt(document.getElementById("quantidade").value);
+
+  if (!quantidade || quantidade < 1) return;
+
+  alert(Compra realizada! 🎟\n${quantidade} tickets de ${tipo} reservados para retirada na loja.);
+
+  // cria fileiras de tickets
+  const colunas = 3; // número de fileiras na tela
+  for (let i = 0; i < colunas; i++) {
+    for (let j = 0; j < quantidade; j++) {
+      setTimeout(() => {
+        const ticket = document.createElement("img");
+        ticket.src = "img/ticket.png"; // use sua imagem real aqui
+        ticket.className = "ticket";
+        ticket.style.left = (i * (window.innerWidth / colunas) + 50) + "px"; // distribui nas colunas
+        document.body.appendChild(ticket);
+
+        setTimeout(() => ticket.remove(), 6000);
+      }, j * 500); // intervalo entre cada queda
+    }
+  }
+}
+
+  </script>
+</body>
+</html>
