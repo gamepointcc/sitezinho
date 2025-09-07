@@ -146,18 +146,14 @@
     .userMsg { background-color: #f84b90; align-self: flex-end; }
     .botMsg { background-color: #feae34; color: #29004f; align-self: flex-start; }
 
-    /* 📱 Ajustes Mobile */
+    /* Responsivo para celular */
     @media (max-width: 768px) {
-      header h1 { font-size: 20px; }
-      header p { font-size: 12px; }
-      nav { flex-direction: column; gap: 10px; }
-      nav button { width: 100%; font-size: 12px; padding: 10px; }
-      iframe { height: 250px; }
-      #placar-flutuante { width: 90%; right: 5%; top: auto; bottom: 10px; font-size: 10px; }
-      #retroChat { width: 95%; height: 70%; right: 2.5%; bottom: 80px; }
-      #retroChatIcon { right: 60px; }
-      .card, .broche, .manual, .parceria { padding: 15px; }
-      .card img, .broche img, .parceria img { max-width: 100%; }
+      nav { flex-direction: column; }
+      #retroChat {
+        width: 95%;
+        height: 70vh;
+        right: 2.5%;
+      }
     }
   </style>
 </head>
@@ -434,5 +430,4 @@ Data: ${new Date().toLocaleString()}
   });
 </script>
 </body>
-
 </html>
