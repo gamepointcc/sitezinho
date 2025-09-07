@@ -147,15 +147,53 @@
     .botMsg { background-color: #feae34; color: #29004f; align-self: flex-start; }
 
     /* Responsivo para celular */
-    @media (max-width: 768px) {
-      nav { flex-direction: column; }
-      #retroChat {
-        width: 95%;
-        height: 70vh;
-        right: 2.5%;
-      }
-    }
-  </style>
+    <style>
+/* ...seu CSS anterior permanece ... */
+
+/* Ajustes do chat para celular */
+@media (max-width: 768px) {
+  #retroChat {
+    width: 95% !important;
+    height: 70vh !important;
+    right: 2.5% !important;
+    bottom: 75px !important;
+    border-width: 3px;
+    border-radius: 10px;
+  }
+
+  #chatBody select, #chatBody button {
+    width: 100% !important;
+    font-size: 16px !important;
+    padding: 12px !important;
+    margin-bottom: 10px !important;
+    border-radius: 10px !important;
+  }
+
+  #chatSend {
+    background-color: #feae34 !important;
+    color: #29004f !important;
+    font-size: 16px !important;
+    padding: 12px !important;
+    border-radius: 10px !important;
+    cursor: url("img/netherite.cur"), pointer;
+    transition: 0.3s;
+  }
+
+  #chatSend:hover {
+    background-color: #f84b90 !important;
+    color: white !important;
+  }
+
+  .chatMsg {
+    font-size: 14px !important;
+    padding: 10px !important;
+  }
+
+  .userMsg { max-width: 90% !important; }
+  .botMsg { max-width: 90% !important; }
+}
+</style>
+
 </head>
 <body>
 
@@ -431,3 +469,4 @@ Data: ${new Date().toLocaleString()}
 </script>
 </body>
 </html>
+
