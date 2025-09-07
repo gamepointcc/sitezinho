@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <style>
-    /* Reset básico */
     * {margin: 0; padding: 0; box-sizing: border-box;}
     body {
       font-family: 'Press Start 2P', cursive;
@@ -22,29 +21,25 @@
       border-bottom: 3px solid #f84b90;
       text-shadow: 2px 2px #f84b90;
     }
-
     header h1 { font-size: 32px; letter-spacing: 2px; }
     header p { color: #feae34; font-size: 14px; margin-top: 8px; }
-
     .logo-escola {
       width: 160px;
       margin-bottom: 10px;
       filter: drop-shadow(2px 2px 6px #000);
     }
 
-    /* Menu lateral estilo moderno */
     nav {
       display: flex;
       justify-content: center;
       gap: 15px;
       background-color: #29004f;
-      padding: 10px;
+      padding: 18px;
       flex-wrap: wrap;
       position: sticky;
       top: 0;
       z-index: 100;
     }
-
     nav button {
       background-color: #f84b90;
       border: 2px solid #feae34;
@@ -55,13 +50,8 @@
       cursor: pointer;
       transition: 0.3s;
     }
+    nav button:hover { background-color: #feae34; color: #29004f; }
 
-    nav button:hover {
-      background-color: #feae34;
-      color: #29004f;
-    }
-
-    /* Seções */
     section {
       display: none;
       padding: 50px 20px;
@@ -69,15 +59,16 @@
       margin: 0 auto;
       animation: fadeIn 0.6s ease;
     }
-
     section.active { display: block; }
 
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
-    h2 { color: #feae34; margin-bottom: 20px; text-shadow: 1px 1px #000; }
+    h2 { 
+      color: #feae34; 
+      margin-bottom: 20px; 
+      text-shadow: 1px 1px #000; 
+      text-align: center;
+    }
 
     .card, .broche, .manual, .parceria {
       background-color: #3b0a60;
@@ -87,7 +78,6 @@
       box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
       margin-bottom: 25px;
     }
-
     .card img, .broche img, .parceria img {
       width: 100%;
       max-width: 650px;
@@ -120,12 +110,9 @@
       margin-top: 10px;
       font-size: 10px;
       transition: 0.3s;
+      cursor: pointer;
     }
-
-    .btn:hover {
-      background-color: #feae34;
-      color: #29004f;
-    }
+    .btn:hover { background-color: #feae34; color: #29004f; }
 
     footer {
       background-color: #1a002e;
@@ -149,38 +136,43 @@
       font-size: 11px;
       text-align: left;
       z-index: 1001;
-      word-wrap: break-word;
-      overflow-wrap: break-word;
     }
+    #placar-flutuante ul { list-style: none; padding-left: 0; margin: 5px 0 0 0; }
+    #placar-flutuante ul li { margin: 6px 0; }
 
-    #placar-flutuante ul {
-      list-style: none;
-      padding-left: 0;
-      margin: 5px 0 0 0;
-    }
+/* Fita de tickets */
+.ticket-strip {
+  position: fixed;
+  top: -100%;                /* começa fora da tela */
+  width: 320px;              /* largura grande, tamanho real */
+  z-index: 2000;
+  animation: stripFall 8s linear forwards;
+  pointer-events: none;
+}
 
-    #placar-flutuante ul li {
-      margin: 6px 0;
-      line-height: 1.4em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
+.ticket-strip img {
+  display: block;
+  width: 100%;
+  margin-bottom: -20px;      /* cola os tickets, sem espaço */
+}
 
-    /* Responsividade */
-    @media screen and (max-width: 600px) {
-      #placar-flutuante {
-        width: 90%;
-        top: 10px;
-        right: 5%;
-        font-size: 10px;
-      }
+@keyframes stripFall {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(110vh); }
+}
+
+
+
+
+    .ticket-form label { display: block; margin: 10px 0 5px; }
+    .ticket-form select, .ticket-form input {
+      width: 100%; padding: 8px; margin-bottom: 15px;
+      border-radius: 6px; border: 2px solid #f84b90; font-family: inherit;
     }
   </style>
 </head>
 <body>
 
-  <!-- Placar flutuante -->
   <div id="placar-flutuante">
     <h3>Top Players</h3>
     <ul>
@@ -203,6 +195,7 @@
     <button data-target="manual">Manual</button>
     <button data-target="localizacao">Localização</button>
     <button data-target="parceria">Parceria</button>
+    <button data-target="tickets">Tickets</button>
     <button data-target="contato">Contato</button>
   </nav>
 
@@ -213,7 +206,6 @@
       <p>O Game Point é o lugar ideal para quem busca diversão e um bom hambúrguer.</p>
       <p>Contamos com uma seleção de jogos de fliperama e uma lanchonete com hambúrgueres saborosos.</p>
     </div>
-
     <div class="card">
       <h2>Horário de Funcionamento</h2>
       <p>Segunda a Sábado: 13h – 22h</p>
@@ -243,7 +235,7 @@
         <li>🎮 Proibido comer hambúrguer dentro das máquinas.</li>
         <li>🍔 Se derrubar ketchup no joystick, paga rodada pra galera.</li>
         <li>👾 Se a máquina ganhar de você, ela sobe de nível automaticamente.</li>
-        <li>🕹️ Não vale usar "Hadouken" fora do Street Fighter.</li>
+        <li>🕹 Não vale usar "Hadouken" fora do Street Fighter.</li>
         <li>⚡ Quem gritar "Kamehameha" muito alto, ganha ficha extra.</li>
         <li>🔥 Tiltar no pinball gera banimento temporário de 10 minutos.</li>
         <li>🍟 Batata frita é item de cura +20HP (somente na lanchonete).</li>
@@ -254,11 +246,7 @@
   <section id="localizacao">
     <div class="card">
       <h2>Localização</h2>
-      <iframe 
-        src="https://maps.google.com/maps?q=-22.9414575,-43.6844605&z=17&output=embed" 
-        allowfullscreen="" 
-        loading="lazy">
-      </iframe>
+      <iframe src="https://maps.google.com/maps?q=-22.9414575,-43.6844605&z=17&output=embed" allowfullscreen="" loading="lazy"></iframe>
     </div>
   </section>
 
@@ -267,6 +255,25 @@
       <h2>Game Point + InfoTechStore</h2>
       <img src="img/parceria.png" alt="Parceria">
       <p>Clientes que comprarem R$200 ganham 15% de desconto na compra de tickets na Game Point.</p>
+    </div>
+  </section>
+
+  <!-- NOVA SEÇÃO DE TICKETS -->
+  <section id="tickets">
+    <div class="card">
+      <h2>Comprar Tickets</h2>
+      <form class="ticket-form" onsubmit="event.preventDefault(); comprarTickets();">
+        <label for="tipo">Tipo:</label>
+        <select id="tipo" required>
+          <option value="arcade">Arcades</option>
+          <option value="boliche">Boliche</option>
+        </select>
+
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade" min="1" max="50" required>
+
+        <button type="submit" class="btn">Pagar</button>
+      </form>
     </div>
   </section>
 
@@ -282,7 +289,6 @@
     &copy; 2025 Game Point - Todos os direitos reservados.
   </footer>
 
-  <!-- Som de clique -->
   <audio id="clickSound" src="sounds/mouse-click-sound-233951.mp3" preload="auto"></audio>
 
   <script>
@@ -290,27 +296,50 @@
     const buttons = document.querySelectorAll("nav button");
     const sections = document.querySelectorAll("section");
 
-    // 🔓 desbloqueia o áudio no primeiro clique
     document.body.addEventListener("click", () => {
       clickSound.play().catch(() => {});
-      clickSound.pause();
-      clickSound.currentTime = 0;
+      clickSound.pause(); clickSound.currentTime = 0;
     }, { once: true });
 
-    // 🔊 toca som em todo clique de botão
     buttons.forEach(btn => {
       btn.addEventListener("click", () => {
-        clickSound.pause();
-        clickSound.currentTime = 0;
-        clickSound.play().catch(err => {
-          console.log("Erro ao tocar som:", err);
-        });
-
+        clickSound.pause(); clickSound.currentTime = 0; clickSound.play().catch(()=>{});
         sections.forEach(sec => sec.classList.remove("active"));
         const target = document.getElementById(btn.dataset.target);
         target.classList.add("active");
       });
     });
+
+ function comprarTickets() {
+  const tipo = document.getElementById("tipo").value;
+  const quantidade = parseInt(document.getElementById("quantidade").value);
+
+  if (!quantidade || quantidade < 1) return;
+
+  alert(`Compra realizada! 🎟️\n${quantidade} tickets de ${tipo} reservados para retirada na loja.`);
+
+  const colunas = 4; // número de máquinas (fileiras)
+  for (let i = 0; i < colunas; i++) {
+    const strip = document.createElement("div");
+    strip.className = "ticket-strip";
+    strip.style.left = (i * (window.innerWidth / colunas) + 30) + "px"; // distribui colunas
+
+    // cria uma fita de tickets grudados
+    for (let j = 0; j < 12; j++) { // número de tickets por fita
+      const ticket = document.createElement("img");
+      ticket.src = "img/ticket.png"; // imagem real do ticket
+      strip.appendChild(ticket);
+    }
+
+    document.body.appendChild(strip);
+
+    // remove depois que sair da tela
+    setTimeout(() => strip.remove(), 8000);
+  }
+}
+
+
   </script>
 </body>
 </html>
+
