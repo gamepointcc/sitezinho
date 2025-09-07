@@ -140,28 +140,27 @@
     #placar-flutuante ul { list-style: none; padding-left: 0; margin: 5px 0 0 0; }
     #placar-flutuante ul li { margin: 6px 0; }
 
-/* Tickets animados em fileiras */
-.ticket {
+/* Fita de tickets */
+.ticket-strip {
   position: fixed;
-  top: -250px;
-  width: 400px;   /* tamanho grande realista */
-  height: auto;
+  top: -100%;                /* começa fora da tela */
+  width: 320px;              /* largura grande, tamanho real */
   z-index: 2000;
-  animation: fall 2s ease-in forwards;
+  animation: stripFall 8s linear forwards;
   pointer-events: none;
-  opacity: 0.95;
 }
 
-@keyframes fall {
-  from { 
-    transform: translateY(-250px) rotate(0deg) scale(1); 
-    opacity: 1; 
-  }
-  to { 
-    transform: translateY(110vh) rotate(360deg) scale(1.1); 
-    opacity: 0; 
-  }
+.ticket-strip img {
+  display: block;
+  width: 100%;
+  margin-bottom: -20px;      /* cola os tickets, sem espaço */
 }
+
+@keyframes stripFall {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(110vh); }
+}
+
 
 
 
@@ -311,7 +310,7 @@
       });
     });
 
-    function comprarTickets() {
+ function comprarTickets() {
   const tipo = document.getElementById("tipo").value;
   const quantidade = parseInt(document.getElementById("quantidade").value);
 
@@ -319,24 +318,29 @@
 
   alert(`Compra realizada! 🎟️\n${quantidade} tickets de ${tipo} reservados para retirada na loja.`);
 
-  // cria fileiras de tickets
-  const colunas = 3; // número de fileiras na tela
+  const colunas = 4; // número de máquinas (fileiras)
   for (let i = 0; i < colunas; i++) {
-    for (let j = 0; j < quantidade; j++) {
-      setTimeout(() => {
-        const ticket = document.createElement("img");
-        ticket.src = "img/ticket.png"; // use sua imagem real aqui
-        ticket.className = "ticket";
-        ticket.style.left = (i * (window.innerWidth / colunas) + 50) + "px"; // distribui nas colunas
-        document.body.appendChild(ticket);
+    const strip = document.createElement("div");
+    strip.className = "ticket-strip";
+    strip.style.left = (i * (window.innerWidth / colunas) + 30) + "px"; // distribui colunas
 
-        setTimeout(() => ticket.remove(), 6000);
-      }, j * 400); // intervalo entre cada queda
+    // cria uma fita de tickets grudados
+    for (let j = 0; j < 12; j++) { // número de tickets por fita
+      const ticket = document.createElement("img");
+      ticket.src = "img/ticket.png"; // imagem real do ticket
+      strip.appendChild(ticket);
     }
+
+    document.body.appendChild(strip);
+
+    // remove depois que sair da tela
+    setTimeout(() => strip.remove(), 8000);
   }
 }
+
 
   </script>
 </body>
 </html>
+
 
