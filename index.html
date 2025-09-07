@@ -290,13 +290,38 @@
   <audio id="clickSound" src="sounds/mouse-click-sound-233951.mp3" preload="auto"></audio>
   <audio id="successSound" src="sounds/material-gold-394476.mp3" preload="auto"></audio>
 
-    <!-- Música de fundo -->
+      <!-- Música de fundo -->
   <audio id="bgMusic" src="sounds/8-bit-game-158815.mp3" preload="auto" loop></audio>
+
+  <!-- Botão música -->
+  <button id="musicToggle">🔊</button>
+
+  <style>
+    #musicToggle {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: #f84b90;
+      border: 2px solid #feae34;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+      z-index: 2000;
+    }
+    #musicToggle:hover {
+      background: #feae34;
+      color: #29004f;
+    }
+  </style>
 
   <script>
     const clickSound = document.getElementById("clickSound");
     const successSound = document.getElementById("successSound");
     const bgMusic = document.getElementById("bgMusic");
+    const musicToggle = document.getElementById("musicToggle");
     const buttons = document.querySelectorAll("nav button, .ticket-form select, .ticket-form button");
 
     const sections = document.querySelectorAll("section");
@@ -307,11 +332,22 @@
       clickSound.pause(); clickSound.currentTime = 0;
 
       // inicia música de fundo
-      bgMusic.volume = 0.01; // volume baixo
+      bgMusic.volume = 0.02; // volume baixo
       if (bgMusic.paused) {
         bgMusic.play().catch(() => {});
       }
     }, { once: true });
+
+    // botão liga/desliga música
+    musicToggle.addEventListener("click", () => {
+      if (bgMusic.paused) {
+        bgMusic.play().catch(()=>{});
+        musicToggle.textContent = "🔊";
+      } else {
+        bgMusic.pause();
+        musicToggle.textContent = "🔇";
+      }
+    });
 
     // som em botões e selects
     buttons.forEach(btn => {
