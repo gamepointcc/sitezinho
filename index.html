@@ -32,7 +32,7 @@
       filter: drop-shadow(2px 2px 6px #000);
     }
 
-    /* Menu topo */
+    /* Menu lateral estilo moderno */
     nav {
       display: flex;
       justify-content: center;
@@ -69,6 +69,7 @@
       margin: 0 auto;
       animation: fadeIn 0.6s ease;
     }
+
     section.active { display: block; }
 
     @keyframes fadeIn {
@@ -78,7 +79,6 @@
 
     h2 { color: #feae34; margin-bottom: 20px; text-shadow: 1px 1px #000; }
 
-    /* Caixas */
     .card, .broche, .manual, .parceria {
       background-color: #3b0a60;
       padding: 25px;
@@ -86,20 +86,6 @@
       border-radius: 12px;
       box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
       margin-bottom: 25px;
-    }
-
-    /* 🔥 Centralizar SÓ os títulos das caixas */
-    .card > h2,
-    .broche > h2,
-    .manual > h2,
-    .parceria > h2,
-    #localizacao .card > h2,
-    #cardapio .card > h2,
-    #contato .card > h2,
-    #sobre .card > h2 {
-      text-align: center !important;
-      width: 100%;
-      display: block;
     }
 
     .card img, .broche img, .parceria img {
@@ -135,7 +121,11 @@
       font-size: 10px;
       transition: 0.3s;
     }
-    .btn:hover { background-color: #feae34; color: #29004f; }
+
+    .btn:hover {
+      background-color: #feae34;
+      color: #29004f;
+    }
 
     footer {
       background-color: #1a002e;
@@ -145,7 +135,6 @@
       text-align: center;
     }
 
-    /* Placar flutuante */
     #placar-flutuante {
       position: fixed;
       top: 20px;
@@ -163,17 +152,28 @@
       word-wrap: break-word;
       overflow-wrap: break-word;
     }
+
     #placar-flutuante ul {
-      list-style: none; padding-left: 0; margin: 5px 0 0 0;
+      list-style: none;
+      padding-left: 0;
+      margin: 5px 0 0 0;
     }
+
     #placar-flutuante ul li {
-      margin: 6px 0; line-height: 1.4em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      margin: 6px 0;
+      line-height: 1.4em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* Responsividade */
     @media screen and (max-width: 600px) {
       #placar-flutuante {
-        width: 90%; top: 10px; right: 5%; font-size: 10px;
+        width: 90%;
+        top: 10px;
+        right: 5%;
+        font-size: 10px;
       }
     }
   </style>
@@ -297,12 +297,14 @@
       clickSound.currentTime = 0;
     }, { once: true });
 
-    // 🔊 toca som em todo clique de botão e alterna seção
+    // 🔊 toca som em todo clique de botão
     buttons.forEach(btn => {
       btn.addEventListener("click", () => {
         clickSound.pause();
         clickSound.currentTime = 0;
-        clickSound.play().catch(err => console.log("Erro ao tocar som:", err));
+        clickSound.play().catch(err => {
+          console.log("Erro ao tocar som:", err);
+        });
 
         sections.forEach(sec => sec.classList.remove("active"));
         const target = document.getElementById(btn.dataset.target);
