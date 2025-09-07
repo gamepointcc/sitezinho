@@ -12,11 +12,8 @@
       background: linear-gradient(135deg, #1a0033 0%, #2a0055 65%, #7A378B 100%);
       color: white;
       overflow-x: hidden;
-
-      /* Cursor personalizado */
       cursor: url("img/netherite.cur"), auto;
     }
-
     header {
       background: linear-gradient(90deg, #2a0055, #3b0a60);
       padding: 25px 10px;
@@ -26,12 +23,7 @@
     }
     header h1 { font-size: 32px; letter-spacing: 2px; }
     header p { color: #feae34; font-size: 14px; margin-top: 8px; }
-    .logo-escola {
-      width: 160px;
-      margin-bottom: 10px;
-      filter: drop-shadow(2px 2px 6px #000);
-    }
-
+    .logo-escola { width: 160px; margin-bottom: 10px; filter: drop-shadow(2px 2px 6px #000); }
     nav {
       display: flex;
       justify-content: center;
@@ -54,7 +46,6 @@
       transition: 0.3s;
     }
     nav button:hover { background-color: #feae34; color: #29004f; }
-
     section {
       display: none;
       padding: 50px 20px;
@@ -63,131 +54,42 @@
       animation: fadeIn 0.6s ease;
     }
     section.active { display: block; }
-
     @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-
-    h2 { 
-      color: #feae34; 
-      margin-bottom: 20px; 
-      text-shadow: 1px 1px #000; 
-      text-align: center;
-    }
-
-    .card, .broche, .manual, .parceria {
-      background-color: #3b0a60;
-      padding: 25px;
-      border: 2px dashed #f84b90;
-      border-radius: 12px;
-      box-shadow: 0px 4px 12px rgba(0,0,0,0.4);
-      margin-bottom: 25px;
-    }
-    .card img, .broche img, .parceria img {
-      width: 100%;
-      max-width: 600px;
-      border-radius: 10px;
-      border: 4px solid #f84b90;
-      margin: 15px auto;
-      display: block;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    }
-
-    iframe {
-      width: 100%;
-      max-width: 650px;
-      height: 400px;
-      border: 4px solid #f84b90;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-      margin: 15px auto;
-      display: block;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 10px 15px;
-      border: 2px solid #feae34;
-      border-radius: 8px;
-      background-color: #f84b90;
-      color: white;
-      text-decoration: none;
-      margin-top: 10px;
-      font-size: 10px;
-      transition: 0.3s;
-      cursor: url("img/netherite.cur"), pointer;
-    }
+    h2 { color: #feae34; margin-bottom: 20px; text-shadow: 1px 1px #000; text-align: center; }
+    .card, .broche, .manual, .parceria { background-color: #3b0a60; padding: 25px; border: 2px dashed #f84b90; border-radius: 12px; box-shadow: 0px 4px 12px rgba(0,0,0,0.4); margin-bottom: 25px; }
+    .card img, .broche img, .parceria img { width: 100%; max-width: 600px; border-radius: 10px; border: 4px solid #f84b90; margin: 15px auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+    iframe { width: 100%; max-width: 650px; height: 400px; border: 4px solid #f84b90; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); margin: 15px auto; display: block; }
+    .btn { display: inline-block; padding: 10px 15px; border: 2px solid #feae34; border-radius: 8px; background-color: #f84b90; color: white; text-decoration: none; margin-top: 10px; font-size: 10px; transition: 0.3s; cursor: url("img/netherite.cur"), pointer; }
     .btn:hover { background-color: #feae34; color: #29004f; }
-
-    footer {
-      background-color: #1a002e;
-      padding: 20px;
-      font-size: 10px;
-      border-top: 3px solid #f84b90;
-      text-align: center;
-    }
-
-    #placar-flutuante {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: rgba(59, 10, 96, 0.95);
-      border: 2px dashed #f84b90;
-      padding: 20px;
-      border-radius: 12px;
-      width: 260px;
-      max-width: 90%;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.5);
-      font-size: 11px;
-      text-align: left;
-      z-index: 1001;
-    }
+    footer { background-color: #1a002e; padding: 20px; font-size: 10px; border-top: 3px solid #f84b90; text-align: center; }
+    #placar-flutuante { position: fixed; top: 20px; right: 20px; background-color: rgba(59, 10, 96, 0.95); border: 2px dashed #f84b90; padding: 20px; border-radius: 12px; width: 260px; max-width: 90%; box-shadow: 0 4px 14px rgba(0,0,0,0.5); font-size: 11px; text-align: left; z-index: 1001; }
     #placar-flutuante ul { list-style: none; padding-left: 0; margin: 5px 0 0 0; }
     #placar-flutuante ul li { margin: 6px 0; }
-
-    /* Fita de tickets */
-    .ticket-strip {
-      position: fixed;
-      top: -100%;
-      width: 200px;
-      z-index: 4000;
-      animation: stripFall 6s linear forwards;
-      pointer-events: none;
-    }
-    .ticket-strip img {
-      display: block;
-      width: 100%;
-      margin-bottom: -20px;
-    }
-    @keyframes stripFall {
-      from { transform: translateY(-100%); }
-      to { transform: translateY(110vh); }
-    }
-
+    .ticket-strip { position: fixed; top: -100%; width: 200px; z-index: 4000; animation: stripFall 6s linear forwards; pointer-events: none; }
+    .ticket-strip img { display: block; width: 100%; margin-bottom: -20px; }
+    @keyframes stripFall { from { transform: translateY(-100%); } to { transform: translateY(110vh); } }
     .ticket-form label { display: block; margin: 10px 0 5px; }
-    .ticket-form select, .ticket-form input {
-      width: 100%; padding: 8px; margin-bottom: 15px;
-      border-radius: 6px; border: 2px solid #f84b90; font-family: inherit;
-      cursor: url("img/netherite.cur"), text;
-    }
+    .ticket-form select, .ticket-form input { width: 100%; padding: 8px; margin-bottom: 15px; border-radius: 6px; border: 2px solid #f84b90; font-family: inherit; cursor: url("img/netherite.cur"), text; }
+    #musicToggle { position: fixed; bottom: 15px; right: 15px; background: #f84b90; border: 2px solid #feae34; border-radius: 50%; width: 40px; height: 40px; font-size: 16px; cursor: url("img/netherite.cur"), pointer; box-shadow: 0 3px 8px rgba(0,0,0,0.4); z-index: 9999; }
+    #musicToggle:hover { background: #feae34; color: #29004f; }
 
-    /* Botão de música */
-    #musicToggle {
+    /* Comprovante pop-up */
+    #comprovantePopup {
+      display: none;
       position: fixed;
-      bottom: 15px;
-      right: 15px;
-      background: #f84b90;
-      border: 2px solid #feae34;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 16px;
-      cursor: url("img/netherite.cur"), pointer;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-      z-index: 9999;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #3b0a60;
+      padding: 25px;
+      border: 3px solid #f84b90;
+      border-radius: 12px;
+      z-index: 5000;
+      max-width: 300px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.7);
     }
-    #musicToggle:hover {
-      background: #feae34;
-      color: #29004f;
-    }
+    #comprovantePopup pre { color: #feae34; font-family: 'Press Start 2P', monospace; font-size: 10px; white-space: pre-wrap; text-align: left; }
+    #comprovantePopup button { margin-top: 10px; font-size: 10px; padding: 6px 10px; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -277,7 +179,7 @@
     </div>
   </section>
 
-  <!-- NOVA SEÇÃO DE TICKETS -->
+  <!-- Seção de Tickets -->
   <section id="tickets">
     <div class="card">
       <h2>Comprar Tickets</h2>
@@ -290,6 +192,12 @@
 
         <label for="quantidade">Quantidade:</label>
         <input type="number" id="quantidade" min="1" max="40" required>
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" placeholder="Seu nome" required>
+
+        <label for="numero">Número:</label>
+        <input type="text" id="numero" placeholder="Telefone ou ID" required>
 
         <button type="submit" class="btn">Pagar</button>
       </form>
@@ -308,14 +216,16 @@
     &copy; 2025 Game Point - Todos os direitos reservados.
   </footer>
 
+  <!-- Comprovante Pop-up -->
+  <div id="comprovantePopup">
+    <pre id="comprovanteText"></pre>
+    <button onclick="fecharComprovante()">Fechar</button>
+  </div>
+
   <!-- Sons -->
   <audio id="clickSound" src="sounds/mouse-click-sound-233951.mp3" preload="auto"></audio>
   <audio id="successSound" src="sounds/material-gold-394476.mp3" preload="auto"></audio>
-
-  <!-- Música de fundo -->
   <audio id="bgMusic" src="sounds/8-bit-game-158815.mp3" preload="auto" loop></audio>
-
-  <!-- Botão música -->
   <button id="musicToggle">🔊</button>
 
   <script>
@@ -324,22 +234,16 @@
     const bgMusic = document.getElementById("bgMusic");
     const musicToggle = document.getElementById("musicToggle");
     const buttons = document.querySelectorAll("nav button, .ticket-form select, .ticket-form button");
-
     const sections = document.querySelectorAll("section");
 
     // primeiro clique libera sons e música
     document.body.addEventListener("click", () => {
       clickSound.play().catch(() => {});
       clickSound.pause(); clickSound.currentTime = 0;
-
-      // inicia música de fundo
-      bgMusic.volume = 0.05; // volume bem baixinho
-      if (bgMusic.paused) {
-        bgMusic.play().catch(() => {});
-      }
+      bgMusic.volume = 0.05;
+      if (bgMusic.paused) bgMusic.play().catch(() => {});
     }, { once: true });
 
-    // botão liga/desliga música
     musicToggle.addEventListener("click", () => {
       if (bgMusic.paused) {
         bgMusic.play().catch(()=>{});
@@ -350,7 +254,6 @@
       }
     });
 
-    // som em botões e selects
     buttons.forEach(btn => {
       btn.addEventListener("click", () => {
         clickSound.pause();
@@ -359,7 +262,6 @@
       });
     });
 
-    // navegação entre abas
     document.querySelectorAll("nav button").forEach(btn => {
       btn.addEventListener("click", () => {
         sections.forEach(sec => sec.classList.remove("active"));
@@ -368,19 +270,33 @@
       });
     });
 
-    // compra de tickets
+    // Função de compra
     function comprarTickets() {
       const tipo = document.getElementById("tipo").value;
       const quantidade = parseInt(document.getElementById("quantidade").value);
+      const nome = document.getElementById("nome").value.trim();
+      const numero = document.getElementById("numero").value.trim();
 
-      if (!quantidade || quantidade < 1) return;
+      if (!quantidade || quantidade < 1 || !nome || !numero) return;
 
       successSound.pause();
       successSound.currentTime = 0;
       successSound.play().catch(()=>{});
 
-      alert(`Compra realizada! 🎟️\n${quantidade} tickets de ${tipo} reservados para retirada na loja.`);
+      // Comprovante
+      const comprovante = `
+===== COMPROVANTE GAME POINT =====
+Nome: ${nome}
+Número: ${numero}
+Tipo de Ticket: ${tipo}
+Quantidade: ${quantidade}
+Data: ${new Date().toLocaleString()}
+=================================
+      `;
+      document.getElementById("comprovanteText").textContent = comprovante;
+      document.getElementById("comprovantePopup").style.display = "block";
 
+      // Animação de tickets
       const colunas = 3;
       for (let i = 0; i < colunas; i++) {
         const strip = document.createElement("div");
@@ -397,7 +313,10 @@
         setTimeout(() => strip.remove(), 8000);
       }
     }
+
+    function fecharComprovante() {
+      document.getElementById("comprovantePopup").style.display = "none";
+    }
   </script>
 </body>
 </html>
-
