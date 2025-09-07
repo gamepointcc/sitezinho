@@ -143,8 +143,8 @@
 /* Fita de tickets */
 .ticket-strip {
   position: fixed;
-  top: -100%;                /* começa fora da tela */
-  width: 200px;              /* largura grande, tamanho real */
+  top: -100%;
+  width: 200px;
   z-index: 4000;
   animation: stripFall 6s linear forwards;
   pointer-events: none;
@@ -153,7 +153,7 @@
 .ticket-strip img {
   display: block;
   width: 100%;
-  margin-bottom: -20px;      /* cola os tickets, sem espaço */
+  margin-bottom: -20px;
 }
 
 @keyframes stripFall {
@@ -161,14 +161,11 @@
   to { transform: translateY(110vh); }
 }
 
-
-
-
-    .ticket-form label { display: block; margin: 10px 0 5px; }
-    .ticket-form select, .ticket-form input {
-      width: 100%; padding: 8px; margin-bottom: 15px;
-      border-radius: 6px; border: 2px solid #f84b90; font-family: inherit;
-    }
+.ticket-form label { display: block; margin: 10px 0 5px; }
+.ticket-form select, .ticket-form input {
+  width: 100%; padding: 8px; margin-bottom: 15px;
+  border-radius: 6px; border: 2px solid #f84b90; font-family: inherit;
+}
   </style>
 </head>
 <body>
@@ -289,58 +286,67 @@
     &copy; 2025 Game Point - Todos os direitos reservados.
   </footer>
 
+  <!-- Sons -->
   <audio id="clickSound" src="sounds/mouse-click-sound-233951.mp3" preload="auto"></audio>
+  <audio id="successSound" src="https://cdn.pixabay.com/download/audio/2021/12/14/audio_c5fdb5d86d.mp3?filename=material-gold-394476.mp3" preload="auto"></audio>
 
   <script>
     const clickSound = document.getElementById("clickSound");
-    const buttons = document.querySelectorAll("nav button");
+    const successSound = document.getElementById("successSound");
+    const buttons = document.querySelectorAll("nav button, .ticket-form select, .ticket-form button");
+
     const sections = document.querySelectorAll("section");
 
+    // primeiro clique libera o som no navegador
     document.body.addEventListener("click", () => {
       clickSound.play().catch(() => {});
       clickSound.pause(); clickSound.currentTime = 0;
     }, { once: true });
 
+    // som em todos os botões e selects do ticket
     buttons.forEach(btn => {
       btn.addEventListener("click", () => {
         clickSound.pause(); clickSound.currentTime = 0; clickSound.play().catch(()=>{});
+      });
+    });
+
+    // navegação entre abas
+    document.querySelectorAll("nav button").forEach(btn => {
+      btn.addEventListener("click", () => {
         sections.forEach(sec => sec.classList.remove("active"));
         const target = document.getElementById(btn.dataset.target);
         target.classList.add("active");
       });
     });
 
- function comprarTickets() {
-  const tipo = document.getElementById("tipo").value;
-  const quantidade = parseInt(document.getElementById("quantidade").value);
+    // compra de tickets com som de sucesso
+    function comprarTickets() {
+      const tipo = document.getElementById("tipo").value;
+      const quantidade = parseInt(document.getElementById("quantidade").value);
 
-  if (!quantidade || quantidade < 1) return;
+      if (!quantidade || quantidade < 1) return;
 
-  alert(`Compra realizada! 🎟️\n${quantidade} tickets de ${tipo} reservados para retirada na loja.`);
+      alert(`Compra realizada! 🎟️\n${quantidade} tickets de ${tipo} reservados para retirada na loja.`);
 
-  const colunas = 3; // número de máquinas (fileiras)
-  for (let i = 0; i < colunas; i++) {
-    const strip = document.createElement("div");
-    strip.className = "ticket-strip";
-    strip.style.left = (i * (window.innerWidth / colunas) + 30) + "px"; // distribui colunas
+      // toca som de sucesso
+      successSound.pause(); successSound.currentTime = 0; successSound.play().catch(()=>{});
 
-    // cria uma fita de tickets grudados
-    for (let j = 0; j < 12; j++) { // número de tickets por fita
-      const ticket = document.createElement("img");
-      ticket.src = "img/ticket.png"; // imagem real do ticket
-      strip.appendChild(ticket);
+      const colunas = 3;
+      for (let i = 0; i < colunas; i++) {
+        const strip = document.createElement("div");
+        strip.className = "ticket-strip";
+        strip.style.left = (i * (window.innerWidth / colunas) + 30) + "px";
+
+        for (let j = 0; j < 12; j++) {
+          const ticket = document.createElement("img");
+          ticket.src = "img/ticket.png";
+          strip.appendChild(ticket);
+        }
+
+        document.body.appendChild(strip);
+        setTimeout(() => strip.remove(), 8000);
+      }
     }
-
-    document.body.appendChild(strip);
-
-    // remove depois que sair da tela
-    setTimeout(() => strip.remove(), 8000);
-  }
-}
-
-
   </script>
 </body>
 </html>
-
-
