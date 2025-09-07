@@ -140,32 +140,50 @@
     #placar-flutuante ul { list-style: none; padding-left: 0; margin: 5px 0 0 0; }
     #placar-flutuante ul li { margin: 6px 0; }
 
-/* Fita de tickets */
-.ticket-strip {
-  position: fixed;
-  top: -100%;
-  width: 200px;
-  z-index: 4000;
-  animation: stripFall 6s linear forwards;
-  pointer-events: none;
-}
+    /* Fita de tickets */
+    .ticket-strip {
+      position: fixed;
+      top: -100%;
+      width: 200px;
+      z-index: 4000;
+      animation: stripFall 6s linear forwards;
+      pointer-events: none;
+    }
+    .ticket-strip img {
+      display: block;
+      width: 100%;
+      margin-bottom: -20px;
+    }
+    @keyframes stripFall {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(110vh); }
+    }
 
-.ticket-strip img {
-  display: block;
-  width: 100%;
-  margin-bottom: -20px;
-}
+    .ticket-form label { display: block; margin: 10px 0 5px; }
+    .ticket-form select, .ticket-form input {
+      width: 100%; padding: 8px; margin-bottom: 15px;
+      border-radius: 6px; border: 2px solid #f84b90; font-family: inherit;
+    }
 
-@keyframes stripFall {
-  from { transform: translateY(-100%); }
-  to { transform: translateY(110vh); }
-}
-
-.ticket-form label { display: block; margin: 10px 0 5px; }
-.ticket-form select, .ticket-form input {
-  width: 100%; padding: 8px; margin-bottom: 15px;
-  border-radius: 6px; border: 2px solid #f84b90; font-family: inherit;
-}
+    /* Botão de música */
+    #musicToggle {
+      position: fixed;
+      bottom: 15px;
+      right: 15px;
+      background: #f84b90;
+      border: 2px solid #feae34;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+      z-index: 2000;
+    }
+    #musicToggle:hover {
+      background: #feae34;
+      color: #29004f;
+    }
   </style>
 </head>
 <body>
@@ -286,36 +304,15 @@
     &copy; 2025 Game Point - Todos os direitos reservados.
   </footer>
 
-   <!-- Sons -->
+  <!-- Sons -->
   <audio id="clickSound" src="sounds/mouse-click-sound-233951.mp3" preload="auto"></audio>
   <audio id="successSound" src="sounds/material-gold-394476.mp3" preload="auto"></audio>
 
-      <!-- Música de fundo -->
+  <!-- Música de fundo -->
   <audio id="bgMusic" src="sounds/8-bit-game-158815.mp3" preload="auto" loop></audio>
 
   <!-- Botão música -->
   <button id="musicToggle">🔊</button>
-
-  <style>
-    #musicToggle {
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      background: #f84b90;
-      border: 2px solid #feae34;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      font-size: 16px;
-      cursor: pointer;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
-      z-index: 2000;
-    }
-    #musicToggle:hover {
-      background: #feae34;
-      color: #29004f;
-    }
-  </style>
 
   <script>
     const clickSound = document.getElementById("clickSound");
@@ -332,7 +329,7 @@
       clickSound.pause(); clickSound.currentTime = 0;
 
       // inicia música de fundo
-      bgMusic.volume = 0.02; // volume baixo
+      bgMusic.volume = 0.05; // volume bem baixinho
       if (bgMusic.paused) {
         bgMusic.play().catch(() => {});
       }
@@ -397,8 +394,5 @@
       }
     }
   </script>
-
-
-
-
-
+</body>
+</html>
