@@ -144,7 +144,7 @@
 .ticket {
   position: fixed;
   top: -250px;
-  width: 600px;   /* tamanho grande realista */
+  width: 400px;   /* tamanho grande realista */
   height: auto;
   z-index: 2000;
   animation: fall 2s ease-in forwards;
@@ -331,7 +331,7 @@
         document.body.appendChild(ticket);
 
         setTimeout(() => ticket.remove(), 6000);
-      }, j * 200); // intervalo entre cada queda
+      }, j * 400); // intervalo entre cada queda
     }
   }
 }
@@ -339,3 +339,4 @@
   </script>
 </body>
 </html>
+
