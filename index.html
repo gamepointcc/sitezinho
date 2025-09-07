@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Game Point | Fliperama & Lanches</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <style>
+    * {margin: 0; padding: 0; box-sizing: border-box;}
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background: linear-gradient(135deg, #1a0033 0%, #2a0055 65%, #7A378B 100%);
+      color: white;
+      overflow-x: hidden;
+      cursor: url("img/netherite.cur"), auto;
+    }
+    header {
+      background: linear-gradient(90deg, #2a0055, #3b0a60);
+      padding: 25px 10px;
+      text-align: center;
+      border-bottom: 3px solid #f84b90;
+      text-shadow: 2px 2px #f84b90;
+    }
+    header h1 { font-size: 32px; letter-spacing: 2px; }
+    header p { color: #feae34; font-size: 14px; margin-top: 8px; }
+    .logo-escola { width: 160px; margin-bottom: 10px; filter: drop-shadow(2px 2px 6px #000); }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      background-color: #29004f;
+      padding: 18px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    nav button {
+      background-color: #f84b90;
+      border: 2px solid #feae34;
+      border-radius: 8px;
+      color: white;
+      font-size: 14px;
+      padding: 11px 15px;
+      cursor: url("img/netherite.cur"), pointer;
+      transition: 0.3s;
+    }
+    nav button:hover { background-color: #feae34; color: #29004f; }
+    section {
+      display: none;
+      padding: 50px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+      animation: fadeIn 0.6s ease;
+    }
+    section.active { display: block; }
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+    h2 { color: #feae34; margin-bottom: 20px; text-shadow: 1px 1px #000; text-align: center; }
+    .card, .broche, .manual, .parceria { background-color: #3b0a60; padding: 25px; border: 2px dashed #f84b90; border-radius: 12px; box-shadow: 0px 4px 12px rgba(0,0,0,0.4); margin-bottom: 25px; }
+    .card img, .broche img, .parceria img { width: 100%; max-width: 300px; border-radius: 10px; border: 4px solid #f84b90; margin: 15px auto; display: block; box-shadow: 0 4px 12px rgba(0,0,0,0.5); }
+    iframe { width: 100%; max-width: 650px; height: 400px; border: 4px solid #f84b90; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.5); margin: 15px auto; display: block; }
+    .btn { display: inline-block; padding: 10px 15px; border: 2px solid #feae34; border-radius: 8px; background-color: #f84b90; color: white; text-decoration: none; margin-top: 10px; font-size: 10px; transition: 0.3s; cursor: url("img/netherite.cur"), pointer; }
+    .btn:hover { background-color: #feae34; color: #29004f; }
+    footer { background-color: #1a002e; padding: 20px; font-size: 10px; border-top: 3px solid #f84b90; text-align: center; }
+    #placar-flutuante { position: fixed; top: 20px; right: 20px; background-color: rgba(59, 10, 96, 0.95); border: 2px dashed #f84b90; padding: 20px; border-radius: 12px; width: 260px; max-width: 90%; box-shadow: 0 4px 14px rgba(0,0,0,0.5); font-size: 11px; text-align: left; z-index: 1001; }
+    #placar-flutuante ul { list-style: none; padding-left: 0; margin: 5px 0 0 0; }
+    #placar-flutuante ul li { margin: 6px 0; }
+
+    .ticket-strip { position: fixed; top: 0; width: 200px; z-index: 4000; animation: stripFall 2.5s ease-in forwards; pointer-events: none; }
+    .ticket-strip img { display: block; width: 100%; margin-bottom: -20px; }
+    @keyframes stripFall { from { transform: translateY(-100%); opacity: 1; } to { transform: translateY(100vh); opacity: 0; } }
+
+    .ticket-form label { display: block; margin: 10px 0 5px; }
+    .ticket-form select, .ticket-form input { width: 100%; padding: 8px; margin-bottom: 15px; border-radius: 6px; border: 2px solid #f84b90; font-family: inherit; cursor: url("img/netherite.cur"), text; }
+    #musicToggle { position: fixed; bottom: 15px; right: 15px; background: #f84b90; border: 2px solid #feae34; border-radius: 50%; width: 40px; height: 40px; font-size: 16px; cursor: url("img/netherite.cur"), pointer; box-shadow: 0 3px 8px rgba(0,0,0,0.4); z-index: 9999; }
+    #musicToggle:hover { background-color: #feae34; color: #29004f; }
+
+    #comprovantePopup { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: linear-gradient(135deg, #2a0055, #3b0a60); padding: 30px 25px; border: 3px dashed #f84b90; border-radius: 14px; z-index: 5000; max-width: 350px; width: 90%; text-align: center; box-shadow: 0 8px 20px rgba(0,0,0,0.6); color: #fff; }
+    #comprovantePopup pre { background-color: #1a002e; border: 2px solid #feae34; border-radius: 8px; padding: 15px; color: #feae34; font-family: 'Press Start 2P', monospace; font-size: 10px; white-space: pre-wrap; text-align: left; box-shadow: inset 0 0 10px rgba(0,0,0,0.3); }
+    #comprovantePopup button { margin-top: 16px; font-size: 12px; padding: 10px 18px; background-color: #f84b90; border: 2px solid #feae34; border-radius: 8px; color: white; font-family: 'Press Start 2P', cursive; cursor: url("img/netherite.cur"), pointer; transition: 0.3s; }
+    #comprovantePopup button:hover { background-color: #feae34; color: #29004f; }
+
+    /* Chat Retro Estilo WhatsApp */
+    #retroChatIcon {
+      position: fixed;
+      bottom: 15px;
+      right: 70px;
+      background: #f84b90;
+      border: 2px solid #feae34;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 12px;
+      text-align: center;
+      line-height: 46px;
+      cursor: pointer;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+      z-index: 10000;
+      color: white;
+      font-family: 'Press Start 2P', cursive;
+    }
+    #retroChatIcon:hover { background: #feae34; color: #29004f; }
+
+    #retroChat {
+      position: fixed;
+      bottom: 75px;
+      right: 15px;
+      width: 40%;
+      max-width: 500px;
+      height: 500px;
+      background: linear-gradient(135deg, #2a0055, #3b0a60);
+      border: 3px dashed #f84b90;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.6);
+      font-family: 'Press Start 2P', cursive;
+      color: #fff;
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    #chatBody { padding: 10px; font-size: 12px; display: flex; flex-direction: column; height: 100%; }
+    #chatBody select, #chatBody button {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      border-radius: 6px;
+      border: 2px solid #f84b90;
+      background-color: #29004f;
+      color: #fff;
+      font-family: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    #chatBody button:hover { background-color: #feae34; color: #29004f; }
+
+    #chatMessages {
+      flex: 1;
+      overflow-y: auto;
+      margin-bottom: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .chatMsg { padding: 6px 8px; border-radius: 8px; max-width: 80%; font-size: 12px; word-wrap: break-word; }
+    .userMsg { background-color: #f84b90; align-self: flex-end; }
+    .botMsg { background-color: #feae34; color: #29004f; align-self: flex-start; }
+  </style>
+</head>
+<body>
+
+<div id="placar-flutuante">
+  <h3>Top Players</h3>
+  <ul>
+    <li>1. NarutoRamenKing</li>
+    <li>2. GokuSJ4_Maníaco</li>
+    <li>3. MandysCandy</li>
+  </ul>
+</div>
+
+<header>
+  <img src="img/logo.png" alt="Logo" class="logo-escola">
+  <h1>GAME POINT</h1>
+  <p>Jogue, Divirta-se, Saboreie!</p>
+</header>
+
+<nav>
+  <button data-target="sobre">Sobre</button>
+  <button data-target="broche">Broche</button>
+  <button data-target="cardapio">Cardápio</button>
+  <button data-target="manual">Manual</button>
+  <button data-target="localizacao">Localização</button>
+  <button data-target="parceria">Parceria</button>
+  <button data-target="tickets">Tickets</button>
+  <button data-target="contato">Contato</button>
+</nav>
+
+<!-- Seções -->
+<section id="sobre" class="active">
+  <div class="card">
+    <h2>Sobre Nós</h2>
+    <p>O Game Point é o lugar ideal para quem busca diversão e um bom hambúrguer.</p>
+    <p>Contamos com uma seleção de jogos de fliperama e uma lanchonete com hambúrgueres saborosos.</p>
+  </div>
+  <div class="card">
+    <h2>Horário de Funcionamento</h2>
+    <p>Segunda a Sábado: 13h – 22h</p>
+    <p>Domingo: 13h – 20h</p>
+  </div>
+</section>
+
+<section id="broche">
+  <div class="broche">
+    <h2>Broche do Fliperama</h2>
+    <img src="img/broche.png" alt="Broche">
+    <p>Um pedacinho dos clássicos no seu look! Disponível na loja física.</p>
+  </div>
+</section>
+
+<section id="cardapio">
+  <div class="card">
+    <h2>Cardápio Digital</h2>
+    <img src="img/cardapio.png" alt="Cardápio">
+  </div>
+</section>
+
+<section id="manual">
+  <div class="manual">
+    <h2>Manual do Jogador</h2>
+    <ul>
+      <li>🎮 Proibido comer hambúrguer dentro das máquinas.</li>
+      <li>🍔 Se derrubar ketchup no joystick, paga rodada pra galera.</li>
+      <li>👾 Se a máquina ganhar de você, ela sobe de nível automaticamente.</li>
+      <li>🕹 Não vale usar "Hadouken" fora do Street Fighter.</li>
+      <li>⚡ Quem gritar "Kamehameha" muito alto, ganha ficha extra.</li>
+      <li>🔥 Tiltar no pinball gera banimento temporário de 10 minutos.</li>
+      <li>🍟 Batata frita é item de cura +20HP (somente na lanchonete).</li>
+    </ul>
+  </div>
+</section>
+
+<section id="localizacao">
+  <div class="card">
+    <h2>Localização</h2>
+    <iframe src="https://maps.google.com/maps?q=-22.9414575,-43.6844605&z=17&output=embed" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+</section>
+
+<section id="parceria">
+  <div class="parceria">
+    <h2>Game Point + InfoTechStore</h2>
+    <img src="img/parceria.png" alt="Parceria">
+    <p>Clientes que comprarem R$200 ganham 15% de desconto na compra de tickets na Game Point.</p>
+  </div>
+</section>
+
+<section id="tickets">
+  <div class="card">
+    <h2>Comprar Tickets</h2>
+    <form class="ticket-form" onsubmit="event.preventDefault(); comprarTickets();">
+      <label for="tipo">Tipo:</label>
+      <select id="tipo" required>
+        <option value="arcade">Arcades</option>
+        <option value="boliche">Boliche</option>
+      </select>
+
+      <label for="quantidade">Quantidade:</label>
+      <input type="number" id="quantidade" min="1" max="40" required>
+
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" placeholder="Seu nome" required>
+
+      <label for="numero">Número:</label>
+      <input type="text" id="numero" placeholder="Telefone ou ID" required>
+
+      <button type="submit" class="btn">Pagar</button>
+    </form>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="card">
+    <h2>Contato</h2>
+    <p>Instagram: <a class="btn" href="https://instagram.com/pointgame.flip" target="_blank">@pointgame.flip</a></p>
+    <p>Email: <a class="btn" href="mailto:pointgamecontato@gmail.com">pointgamecontato@gmail.com</a></p>
+  </div>
+</section>
+
+<footer>
+  &copy; 2025 Game Point - Todos os direitos reservados.
+</footer>
+
+<!-- Comprovante Pop-up -->
+<div id="comprovantePopup">
+  <pre id="comprovanteText"></pre>
+  <button onclick="fecharComprovante()">Fechar</button>
+</div>
+
+<!-- Sons -->
+<audio id="clickSound" src="sounds/mouse-click-sound-233951.mp3" preload="auto"></audio>
+<audio id="successSound" src="sounds/material-gold-394476.mp3" preload="auto"></audio>
+<audio id="bgMusic" src="sounds/8-bit-game-158815.mp3" preload="auto" loop></audio>
+<button id="musicToggle">🔊</button>
+
+<!-- Chat Retro -->
+<div id="retroChatIcon" title="Ajuda">💬</div>
+<div id="retroChat">
+  <div id="chatBody">
+    <div id="chatMessages"></div>
+    <select id="chatQuestions">
+      <option value="">-- Selecione --</option>
+      <option value="horario">Qual o horário de funcionamento?</option>
+      <option value="broche">O broche é comprado apenas na loja física?</option>
+      <option value="parceria">Como resgato meu desconto de 15%?</option>
+      <option value="ticket">O que tenho que fazer depois de compar os tickets online?</option>
+    </select>
+    <button id="chatSend">Perguntar</button>
+  </div>
+</div>
+
+<script>
+  const clickSound = document.getElementById("clickSound");
+  const successSound = document.getElementById("successSound");
+  const bgMusic = document.getElementById("bgMusic");
+  const musicToggle = document.getElementById("musicToggle");
+  const buttons = document.querySelectorAll("nav button, .ticket-form select, .ticket-form button");
+  const sections = document.querySelectorAll("section");
+
+  document.body.addEventListener("click", () => {
+    clickSound.play().catch(() => {});
+    clickSound.pause(); clickSound.currentTime = 0;
+    bgMusic.volume = 0.05;
+    if (bgMusic.paused) bgMusic.play().catch(() => {});
+  }, { once: true });
+
+  musicToggle.addEventListener("click", () => {
+    if (bgMusic.paused) {
+      bgMusic.play().catch(()=>{});
+      musicToggle.textContent = "🔊";
+    } else {
+      bgMusic.pause();
+      musicToggle.textContent = "🔇";
+    }
+  });
+
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      clickSound.pause();
+      clickSound.currentTime = 0;
+      clickSound.play().catch(()=>{});
+    });
+  });
+
+  document.querySelectorAll("nav button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      sections.forEach(sec => sec.classList.remove("active"));
+      const target = document.getElementById(btn.dataset.target);
+      target.classList.add("active");
+    });
+  });
+
+  function comprarTickets() {
+    const tipo = document.getElementById("tipo").value;
+    const quantidade = parseInt(document.getElementById("quantidade").value);
+    const nome = document.getElementById("nome").value.trim();
+    const numero = document.getElementById("numero").value.trim();
+    if (!quantidade || quantidade < 1 || !nome || !numero) return;
+
+    successSound.pause();
+    successSound.currentTime = 0;
+    successSound.play().catch(()=>{});
+
+    const comprovante = `
+COMPROVANTE GAME POINT
+Nome: ${nome}
+Número: ${numero}
+Tipo de Ticket: ${tipo}
+Quantidade: ${quantidade}
+Data: ${new Date().toLocaleString()}
+    `;
+    document.getElementById("comprovanteText").textContent = comprovante;
+    document.getElementById("comprovantePopup").style.display = "block";
+
+    const colunas = 4;
+    for (let i = 0; i < colunas; i++) {
+      const strip = document.createElement("div");
+      strip.className = "ticket-strip";
+      strip.style.left = (i * (window.innerWidth / colunas) + 50) + "px";
+      for (let j = 0; j < 4; j++) {
+        const ticket = document.createElement("img");
+        ticket.src = "img/ticket.png";
+        strip.appendChild(ticket);
+      }
+      document.body.appendChild(strip);
+      strip.addEventListener("animationend", () => { strip.remove(); });
+      setTimeout(() => { if(document.body.contains(strip)) strip.remove(); }, 3000);
+    }
+  }
+
+  function fecharComprovante() {
+    document.getElementById("comprovantePopup").style.display = "none";
+  }
+
+  // Chat Retro WhatsApp
+  const retroChatIcon = document.getElementById("retroChatIcon");
+  const retroChat = document.getElementById("retroChat");
+  const chatSend = document.getElementById("chatSend");
+  const chatQuestions = document.getElementById("chatQuestions");
+  const chatMessages = document.getElementById("chatMessages");
+
+  const respostas = {
+    horario: "Seg-Sáb: 13h-22h\nDomingo: 13h-20h\nMas se chegar antes ou depois... tente negociar com o Mario!",
+    broche: "Sim, apenas na loja física ds Game Point",
+    parceria: "Só levar seu comrpovante de compra (igual ou maior que R$200) da InfoTechStore pra comprar seus tickets!",
+    ticket: "Tire um print da confirmação de compra para precaução. Nosso sistema já é notificado da sua compra!"
+  };
+
+  retroChatIcon.addEventListener("click", () => {
+    retroChat.style.display = retroChat.style.display === "none" ? "flex" : "none";
+  });
+
+  chatSend.addEventListener("click", () => {
+    const pergunta = chatQuestions.value;
+    if (!pergunta) return;
+    // Mensagem do usuário
+    const userDiv = document.createElement("div");
+    userDiv.className = "chatMsg userMsg";
+    userDiv.textContent = chatQuestions.options[chatQuestions.selectedIndex].text;
+    chatMessages.appendChild(userDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Resposta do bot
+    setTimeout(() => {
+      const botDiv = document.createElement("div");
+      botDiv.className = "chatMsg botMsg";
+      botDiv.textContent = respostas[pergunta];
+      chatMessages.appendChild(botDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 600);
+  });
+</script>
+</body>
+</html>
