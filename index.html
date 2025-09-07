@@ -216,54 +216,11 @@
     &copy; 2025 Game Point - Todos os direitos reservados.
   </footer>
 
-  /* Comprovante pop-up melhorado */
-#comprovantePopup {
-  display: none;
-  position: fixed;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  background: linear-gradient(145deg, #4b0a80, #2a0055);
-  padding: 25px 30px;
-  border: 4px solid #feae34;
-  border-radius: 15px;
-  z-index: 5000;
-  max-width: 320px;
-  text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.8);
-  font-size: 12px;
-}
-
-#comprovantePopup pre {
-  color: #ffde59;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 11px;
-  white-space: pre-wrap;
-  text-align: left;
-  margin-bottom: 15px;
-}
-
-#comprovantePopup button {
-  font-size: 12px;
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: 2px solid #feae34;
-  background-color: #f84b90;
-  color: white;
-  cursor: url("img/netherite.cur"), pointer;
-  transition: 0.3s;
-}
-
-#comprovantePopup button:hover {
-  background-color: #feae34;
-  color: #2a0055;
-}
-
-/* Botão de compra maior */
-.ticket-form button.btn {
-  padding: 14px 25px;
-  font-size: 14px;
-}
-
+  <!-- Comprovante Pop-up -->
+  <div id="comprovantePopup">
+    <pre id="comprovanteText"></pre>
+    <button onclick="fecharComprovante()">Fechar</button>
+  </div>
 
   <!-- Sons -->
   <audio id="clickSound" src="sounds/mouse-click-sound-233951.mp3" preload="auto"></audio>
