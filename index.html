@@ -144,9 +144,9 @@
 .ticket-strip {
   position: fixed;
   top: -100%;                /* começa fora da tela */
-  width: 100px;              /* largura grande, tamanho real */
-  z-index: 500;
-  animation: stripFall 6s linear forwards;
+  width: 50px;              /* largura grande, tamanho real */
+  z-index: 60;
+  animation: stripFall 4s linear forwards;
   pointer-events: none;
 }
 
@@ -270,7 +270,7 @@
         </select>
 
         <label for="quantidade">Quantidade:</label>
-        <input type="number" id="quantidade" min="1" max="50" required>
+        <input type="number" id="quantidade" min="1" max="40" required>
 
         <button type="submit" class="btn">Pagar</button>
       </form>
@@ -318,7 +318,7 @@
 
   alert(`Compra realizada! 🎟️\n${quantidade} tickets de ${tipo} reservados para retirada na loja.`);
 
-  const colunas = 4; // número de máquinas (fileiras)
+  const colunas = 3; // número de máquinas (fileiras)
   for (let i = 0; i < colunas; i++) {
     const strip = document.createElement("div");
     strip.className = "ticket-strip";
@@ -342,6 +342,7 @@
   </script>
 </body>
 </html>
+
 
 
 
