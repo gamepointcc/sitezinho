@@ -146,14 +146,14 @@
   top: -100%;                /* começa fora da tela */
   width: 320px;              /* largura grande, tamanho real */
   z-index: 2000;
-  animation: stripFall 8s linear forwards;
+  animation: stripFall 20s linear forwards;
   pointer-events: none;
 }
 
 .ticket-strip img {
   display: block;
   width: 100%;
-  margin-bottom: -20px;     /* cola os tickets */
+  margin-bottom: -10px;     /* cola os tickets */
   transform: rotate(90deg); /* deixa o ticket de lado */
 }
 
@@ -162,9 +162,6 @@
   from { transform: translateY(-100%); }
   to { transform: translateY(110vh); }
 }
-
-
-
 
     .ticket-form label { display: block; margin: 10px 0 5px; }
     .ticket-form select, .ticket-form input {
@@ -320,15 +317,15 @@
 
   alert(`Compra realizada! 🎟️\n${quantidade} tickets de ${tipo} reservados para retirada na loja.`);
 
-  const colunas = 4; // número de máquinas (fileiras)
+  const colunas = 3; // número de máquinas (fileiras)
   for (let i = 0; i < colunas; i++) {
     const strip = document.createElement("div");
     strip.className = "ticket-strip";
     strip.style.left = (i * (window.innerWidth / colunas) + 30) + "px"; // distribui colunas
 
     // cria uma fita de tickets grudados
-    for (let j = 0; j < 12; j++) { // número de tickets por fita
-      for (let j = 0; j < 12; j++) {
+    for (let j = 0; j < 10; j++) { // número de tickets por fita
+      for (let j = 0; j < 10; j++) {
   const ticket = document.createElement("img");
   ticket.src = "img/ticket.png";
   ticket.style.display = "block";
@@ -351,6 +348,7 @@
   </script>
 </body>
 </html>
+
 
 
 
