@@ -286,21 +286,29 @@
     &copy; 2025 Game Point - Todos os direitos reservados.
   </footer>
 
-  <!-- Sons -->
+   <!-- Sons -->
   <audio id="clickSound" src="sounds/mouse-click-sound-233951.mp3" preload="auto"></audio>
   <audio id="successSound" src="sounds/material-gold-394476.mp3" preload="auto"></audio>
+
+  <!-- Música de fundo -->
+  <audio id="bgMusic" src="sounds/8-bit-game-158815.mp3" autoplay loop preload="auto"></audio>
 
   <script>
     const clickSound = document.getElementById("clickSound");
     const successSound = document.getElementById("successSound");
+    const bgMusic = document.getElementById("bgMusic");
     const buttons = document.querySelectorAll("nav button, .ticket-form select, .ticket-form button");
 
     const sections = document.querySelectorAll("section");
 
-    // primeiro clique libera o som no navegador
+    // primeiro clique libera o som no navegador (inclusive música de fundo)
     document.body.addEventListener("click", () => {
       clickSound.play().catch(() => {});
       clickSound.pause(); clickSound.currentTime = 0;
+
+      // inicia a música de fundo baixinha
+      bgMusic.volume = 0.15; // volume bem baixo
+      bgMusic.play().catch(() => {});
     }, { once: true });
 
     // som em todos os botões e selects do ticket
@@ -320,39 +328,33 @@
     });
 
     // compra de tickets com som de sucesso
-<script>
-  function comprarTickets() {
-    const tipo = document.getElementById("tipo").value;
-    const quantidade = parseInt(document.getElementById("quantidade").value);
+    function comprarTickets() {
+      const tipo = document.getElementById("tipo").value;
+      const quantidade = parseInt(document.getElementById("quantidade").value);
 
-    if (!quantidade || quantidade < 1) return;
+      if (!quantidade || quantidade < 1) return;
 
-    // toca som de sucesso ANTES do alert (para não ser bloqueado)
-    successSound.pause();
-    successSound.currentTime = 0;
-    successSound.play().catch(()=>{});
+      // toca som de sucesso ANTES do alert (para não ser bloqueado)
+      successSound.pause();
+      successSound.currentTime = 0;
+      successSound.play().catch(()=>{});
 
-    alert(`Compra realizada! 🎟️\n${quantidade} tickets de ${tipo} reservados para retirada na loja.`);
+      alert(`Compra realizada! 🎟️\n${quantidade} tickets de ${tipo} reservados para retirada na loja.`);
 
-    const colunas = 3;
-    for (let i = 0; i < colunas; i++) {
-      const strip = document.createElement("div");
-      strip.className = "ticket-strip";
-      strip.style.left = (i * (window.innerWidth / colunas) + 30) + "px";
+      const colunas = 3;
+      for (let i = 0; i < colunas; i++) {
+        const strip = document.createElement("div");
+        strip.className = "ticket-strip";
+        strip.style.left = (i * (window.innerWidth / colunas) + 30) + "px";
 
-      for (let j = 0; j < 12; j++) {
-        const ticket = document.createElement("img");
-        ticket.src = "img/ticket.png";
-        strip.appendChild(ticket);
+        for (let j = 0; j < 12; j++) {
+          const ticket = document.createElement("img");
+          ticket.src = "img/ticket.png";
+          strip.appendChild(ticket);
+        }
+
+        document.body.appendChild(strip);
+        setTimeout(() => strip.remove(), 8000);
       }
-
-      document.body.appendChild(strip);
-      setTimeout(() => strip.remove(), 8000);
     }
-  }
-</script>
-
-</body>
-</html>
-
-
+  </script>
