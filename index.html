@@ -328,11 +328,15 @@
 
     // cria uma fita de tickets grudados
     for (let j = 0; j < 12; j++) { // número de tickets por fita
-      const ticket = document.createElement("img");
-ticket.src = "img/ticket.png";
-ticket.style.transform = `rotate(90deg)`; // deixa o ticket de lado
-ticket.style.display = 'block';
-strip.appendChild(ticket);
+      for (let j = 0; j < 12; j++) {
+  const ticket = document.createElement("img");
+  ticket.src = "img/ticket.png";
+  ticket.style.display = "block";
+  ticket.style.transform = `rotate(-90deg)`;   // gira para o lado
+  ticket.style.transformOrigin = "top left";   // ponto de rotação
+  strip.appendChild(ticket);
+}
+
 
     }
 
@@ -347,6 +351,7 @@ strip.appendChild(ticket);
   </script>
 </body>
 </html>
+
 
 
 
