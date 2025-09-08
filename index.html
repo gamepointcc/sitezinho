@@ -80,7 +80,7 @@
     #comprovantePopup button { margin-top: 16px; font-size: 12px; padding: 10px 18px; background-color: #f84b90; border: 2px solid #feae34; border-radius: 8px; color: white; font-family: 'Press Start 2P', cursive; cursor: url("img/netherite.cur"), pointer; transition: 0.3s; }
     #comprovantePopup button:hover { background-color: #feae34; color: #29004f; }
 
-    /* Chat Retro */
+    /* Chat Retro Estilo WhatsApp */
     #retroChatIcon {
       position: fixed;
       bottom: 15px;
@@ -146,212 +146,325 @@
     .userMsg { background-color: #f84b90; align-self: flex-end; }
     .botMsg { background-color: #feae34; color: #29004f; align-self: flex-start; }
 
-    /* Responsivo celular */
-    @media (max-width: 768px) {
-      #retroChat {
-        width: 95% !important;
-        height: 75vh !important;
-        right: 2.5% !important;
-        bottom: 80px !important;
-        border-width: 3px;
-        border-radius: 10px;
-      }
-      #chatBody select, #chatBody button {
-        width: 100% !important;
-        font-size: 16px !important;
-        padding: 12px !important;
-        margin-bottom: 10px !important;
-        border-radius: 10px !important;
-      }
-      #chatSend {
-        background-color: #feae34 !important;
-        color: #29004f !important;
-        font-size: 16px !important;
-        padding: 12px !important;
-        border-radius: 10px !important;
-        cursor: url("img/netherite.cur"), pointer;
-        transition: 0.3s;
-      }
-      #chatSend:hover {
-        background-color: #f84b90 !important;
-        color: white !important;
-      }
-      .chatMsg {
-        font-size: 14px !important;
-        padding: 10px !important;
-      }
-      .userMsg, .botMsg { max-width: 95% !important; }
-      #retroChatIcon { width: 60px !important; height: 60px !important; font-size: 14px !important; line-height: 56px !important; }
-    }
-  </style>
+    /* Responsivo para celular */
+    <style>
+
+/* Ajustes do chat para celular */
+@media (max-width: 768px) {
+  #retroChat {
+    width: 95% !important;
+    height: 70vh !important;
+    right: 2.5% !important;
+    bottom: 75px !important;
+    border-width: 3px;
+    border-radius: 10px;
+  }
+
+  #chatBody select, #chatBody button {
+    width: 100% !important;
+    font-size: 16px !important;
+    padding: 12px !important;
+    margin-bottom: 10px !important;
+    border-radius: 10px !important;
+  }
+
+  #chatSend {
+    background-color: #feae34 !important;
+    color: #29004f !important;
+    font-size: 16px !important;
+    padding: 12px !important;
+    border-radius: 10px !important;
+    cursor: url("img/netherite.cur"), pointer;
+    transition: 0.3s;
+  }
+
+  #chatSend:hover {
+    background-color: #f84b90 !important;
+    color: white !important;
+  }
+
+  .chatMsg {
+    font-size: 14px !important;
+    padding: 10px !important;
+  }
+
+  .userMsg { max-width: 90% !important; }
+  .botMsg { max-width: 90% !important; }
+}
+</style>
+
 </head>
 <body>
-  <header>
-    <img src="img/logo.png" alt="Logo Escola" class="logo-escola">
-    <h1>Game Point</h1>
-    <p>Fliperama & Lanches</p>
-  </header>
 
-  <nav>
-    <button onclick="mostrarSecao('home')">Home</button>
-    <button onclick="mostrarSecao('jogos')">Jogos</button>
-    <button onclick="mostrarSecao('tickets')">Tickets</button>
-    <button onclick="mostrarSecao('parcerias')">Parcerias</button>
-  </nav>
+<div id="placar-flutuante">
+  <h3>Top Players</h3>
+  <ul>
+    <li>1. NarutoRamenKing</li>
+    <li>2. GokuSJ4_Maníaco</li>
+    <li>3. MandysCandy</li>
+  </ul>
+</div>
 
-  <section id="home" class="active">
-    <h2>Bem-vindo ao Game Point</h2>
-    <div class="card">
-      <p>Aqui você encontra diversão garantida e os melhores lanches da cidade!</p>
-      <img src="img/arcade.jpg" alt="Arcade">
-    </div>
-  </section>
+<header>
+  <img src="img/logo.png" alt="Logo" class="logo-escola">
+  <h1>GAME POINT</h1>
+  <p>Jogue, Divirta-se, Saboreie!</p>
+</header>
 
-  <section id="jogos">
-    <h2>Nossos Jogos</h2>
-    <div class="card">
-      <p>Temos clássicos e novidades para todos os gostos!</p>
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Gameplay"></iframe>
-    </div>
-  </section>
+<nav>
+  <button data-target="sobre">Sobre</button>
+  <button data-target="broche">Broche</button>
+  <button data-target="cardapio">Cardápio</button>
+  <button data-target="manual">Manual</button>
+  <button data-target="localizacao">Localização</button>
+  <button data-target="parceria">Parceria</button>
+  <button data-target="tickets">Tickets</button>
+  <button data-target="contato">Contato</button>
+</nav>
 
-  <section id="tickets">
-    <h2>Compre seus Tickets</h2>
-    <form class="ticket-form">
-      <label for="tipo">Tipo de Jogo:</label>
-      <select id="tipo">
-        <option value="arcade">Arcade</option>
-        <option value="boliche">Boliche</option>
-      </select>
-      <label for="quantidade">Quantidade:</label>
-      <input type="number" id="quantidade" min="1" value="1">
-      <button type="button" onclick="comprarTicket()">Comprar</button>
-    </form>
-  </section>
+<!-- Seções -->
+<section id="sobre" class="active">
+  <div class="card">
+    <h2>Sobre Nós</h2>
+    <p>O Game Point é o lugar ideal para quem busca diversão e um bom hambúrguer.</p>
+    <p>Contamos com uma seleção de jogos de fliperama e uma lanchonete com hambúrgueres saborosos.</p>
+  </div>
+  <div class="card">
+    <h2>Horário de Funcionamento</h2>
+    <p>Segunda a Sábado: 13h – 22h</p>
+    <p>Domingo: 13h – 20h</p>
+  </div>
+</section>
 
-  <section id="parcerias">
-    <h2>Parcerias</h2>
-    <div class="parceria">
-      <p>Parceria com a melhor lanchonete da cidade!</p>
-      <img src="img/parceria.jpg" alt="Parceria">
-    </div>
-  </section>
+<section id="broche">
+  <div class="broche">
+    <h2>Broche do Fliperama</h2>
+    <img src="img/broche.png" alt="Broche">
+    <p>Um pedacinho dos clássicos no seu look! Disponível na loja física.</p>
+  </div>
+</section>
 
-  <footer>
-    <p>&copy; 2025 Game Point - Todos os direitos reservados</p>
-  </footer>
+<section id="cardapio">
+  <div class="card">
+    <h2>Cardápio Digital</h2>
+    <img src="img/cardapio.png" alt="Cardápio">
+  </div>
+</section>
 
-  <!-- Placar -->
-  <div id="placar-flutuante">
-    <h3>Ranking</h3>
+<section id="manual">
+  <div class="manual">
+    <h2>Manual do Jogador</h2>
     <ul>
-      <li>Jogador 1 - 500 pts</li>
-      <li>Jogador 2 - 400 pts</li>
-      <li>Jogador 3 - 300 pts</li>
+      <li>🎮 Proibido comer hambúrguer dentro das máquinas.</li>
+      <li>🍔 Se derrubar ketchup no joystick, paga rodada pra galera.</li>
+      <li>👾 Se a máquina ganhar de você, ela sobe de nível automaticamente.</li>
+      <li>🕹 Não vale usar "Hadouken" fora do Street Fighter.</li>
+      <li>⚡ Quem gritar "Kamehameha" muito alto, ganha ficha extra.</li>
+      <li>🔥 Tiltar no pinball gera banimento temporário de 10 minutos.</li>
+      <li>🍟 Batata frita é item de cura +20HP (somente na lanchonete).</li>
     </ul>
   </div>
+</section>
 
-  <!-- Botão música -->
-  <button id="musicToggle">♫</button>
-  <audio id="bgMusic" loop>
-    <source src="musica.mp3" type="audio/mpeg">
-  </audio>
+<section id="localizacao">
+  <div class="card">
+    <h2>Localização</h2>
+    <iframe src="https://maps.google.com/maps?q=-22.9414575,-43.6844605&z=17&output=embed" allowfullscreen="" loading="lazy"></iframe>
+  </div>
+</section>
 
-  <!-- Chat -->
-  <div id="retroChatIcon">💬</div>
-  <div id="retroChat">
-    <div id="chatBody">
-      <div id="chatMessages"></div>
-      <select id="chatOptions">
-        <option value="">Selecione uma pergunta...</option>
-        <option value="horarios">Quais são os horários de funcionamento?</option>
-        <option value="precos">Quais são os preços dos jogos?</option>
-        <option value="lanche">Vocês vendem lanches?</option>
+<section id="parceria">
+  <div class="parceria">
+    <h2>Game Point + InfoTechStore</h2>
+    <img src="img/parceria.png" alt="Parceria">
+    <p>Clientes que comprarem R$200 ganham 15% de desconto na compra de tickets na Game Point.</p>
+  </div>
+</section>
+
+<section id="tickets">
+  <div class="card">
+    <h2>Comprar Tickets</h2>
+    <form class="ticket-form" onsubmit="event.preventDefault(); comprarTickets();">
+      <label for="tipo">Tipo:</label>
+      <select id="tipo" required>
+        <option value="arcade">Arcades</option>
+        <option value="boliche">Boliche</option>
       </select>
-      <button id="chatSend">Enviar</button>
-    </div>
+
+      <label for="quantidade">Quantidade:</label>
+      <input type="number" id="quantidade" min="1" max="40" required>
+
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" placeholder="Seu nome" required>
+
+      <label for="numero">Número:</label>
+      <input type="text" id="numero" placeholder="Telefone ou ID" required>
+
+      <button type="submit" class="btn">Pagar</button>
+    </form>
   </div>
+</section>
 
-  <!-- Sons -->
-  <audio id="clickSound" src="sons/click.mp3"></audio>
-  <audio id="successSound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_7f63b9a9f1.mp3?filename=material-gold-394476.mp3"></audio>
-
-  <!-- Popup comprovante -->
-  <div id="comprovantePopup">
-    <h3>Comprovante de Compra</h3>
-    <pre id="comprovanteTexto"></pre>
-    <button onclick="fecharComprovante()">Fechar</button>
+<section id="contato">
+  <div class="card">
+    <h2>Contato</h2>
+    <p>Instagram: <a class="btn" href="https://instagram.com/pointgame.flip" target="_blank">@pointgame.flip</a></p>
+    <p>Email: <a class="btn" href="mailto:pointgamecontato@gmail.com">pointgamecontato@gmail.com</a></p>
   </div>
+</section>
 
-  <script>
-    function mostrarSecao(secaoId) {
-      document.querySelectorAll("section").forEach(sec => sec.classList.remove("active"));
-      document.getElementById(secaoId).classList.add("active");
-      document.getElementById("clickSound").play();
+<footer>
+  &copy; 2025 Game Point - Todos os direitos reservados.
+</footer>
+
+<!-- Comprovante Pop-up -->
+<div id="comprovantePopup">
+  <pre id="comprovanteText"></pre>
+  <button onclick="fecharComprovante()">Fechar</button>
+</div>
+
+<!-- Sons -->
+<audio id="clickSound" src="sounds/mouse-click-sound-233951.mp3" preload="auto"></audio>
+<audio id="successSound" src="sounds/material-gold-394476.mp3" preload="auto"></audio>
+<audio id="bgMusic" src="sounds/8-bit-game-158815.mp3" preload="auto" loop></audio>
+<button id="musicToggle">🔊</button>
+
+<!-- Chat Retro -->
+<div id="retroChatIcon" title="Ajuda">💬</div>
+<div id="retroChat">
+  <div id="chatBody">
+    <div id="chatMessages"></div>
+    <select id="chatQuestions">
+      <option value="">-- Selecione --</option>
+      <option value="horario">Qual o horário de funcionamento?</option>
+      <option value="broche">O broche é comprado apenas na loja física?</option>
+      <option value="parceria">Como resgato meu desconto de 15%?</option>
+      <option value="ticket">O que tenho que fazer depois de compar os tickets online?</option>
+    </select>
+    <button id="chatSend">Perguntar</button>
+  </div>
+</div>
+
+<script>
+  const clickSound = document.getElementById("clickSound");
+  const successSound = document.getElementById("successSound");
+  const bgMusic = document.getElementById("bgMusic");
+  const musicToggle = document.getElementById("musicToggle");
+  const buttons = document.querySelectorAll("nav button, .ticket-form select, .ticket-form button");
+  const sections = document.querySelectorAll("section");
+
+  document.body.addEventListener("click", () => {
+    clickSound.play().catch(() => {});
+    clickSound.pause(); clickSound.currentTime = 0;
+    bgMusic.volume = 0.05;
+    if (bgMusic.paused) bgMusic.play().catch(() => {});
+  }, { once: true });
+
+  musicToggle.addEventListener("click", () => {
+    if (bgMusic.paused) {
+      bgMusic.play().catch(()=>{});
+      musicToggle.textContent = "🔊";
+    } else {
+      bgMusic.pause();
+      musicToggle.textContent = "🔇";
     }
+  });
 
-    document.getElementById("musicToggle").addEventListener("click", function () {
-      let music = document.getElementById("bgMusic");
-      if (music.paused) {
-        music.volume = 0.1;
-        music.play();
-        this.textContent = "🔇";
-      } else {
-        music.pause();
-        this.textContent = "♫";
-      }
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      clickSound.pause();
+      clickSound.currentTime = 0;
+      clickSound.play().catch(()=>{});
     });
+  });
 
-    function comprarTicket() {
-      let tipo = document.getElementById("tipo").value;
-      let qtd = document.getElementById("quantidade").value;
-      let comprovante = `🎟️ Comprovante de Compra\n\nTipo: ${tipo}\nQuantidade: ${qtd}\nObrigado pela preferência!`;
+  document.querySelectorAll("nav button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      sections.forEach(sec => sec.classList.remove("active"));
+      const target = document.getElementById(btn.dataset.target);
+      target.classList.add("active");
+    });
+  });
 
-      document.getElementById("comprovanteTexto").textContent = comprovante;
-      document.getElementById("comprovantePopup").style.display = "block";
-      document.getElementById("successSound").play();
+  function comprarTickets() {
+    const tipo = document.getElementById("tipo").value;
+    const quantidade = parseInt(document.getElementById("quantidade").value);
+    const nome = document.getElementById("nome").value.trim();
+    const numero = document.getElementById("numero").value.trim();
+    if (!quantidade || quantidade < 1 || !nome || !numero) return;
 
-      for (let i = 0; i < 5; i++) {
-        let strip = document.createElement("div");
-        strip.classList.add("ticket-strip");
-        strip.style.left = Math.random() * 80 + "vw";
-        strip.innerHTML = `<img src="img/ticket.png" alt="Ticket">`;
-        document.body.appendChild(strip);
-        setTimeout(() => strip.remove(), 2500);
+    successSound.pause();
+    successSound.currentTime = 0;
+    successSound.play().catch(()=>{});
+
+    const comprovante = `
+COMPROVANTE GAME POINT
+Nome: ${nome}
+Número: ${numero}
+Tipo de Ticket: ${tipo}
+Quantidade: ${quantidade}
+Data: ${new Date().toLocaleString()}
+    `;
+    document.getElementById("comprovanteText").textContent = comprovante;
+    document.getElementById("comprovantePopup").style.display = "block";
+
+    const colunas = 4;
+    for (let i = 0; i < colunas; i++) {
+      const strip = document.createElement("div");
+      strip.className = "ticket-strip";
+      strip.style.left = (i * (window.innerWidth / colunas) + 50) + "px";
+      for (let j = 0; j < 4; j++) {
+        const ticket = document.createElement("img");
+        ticket.src = "img/ticket.png";
+        strip.appendChild(ticket);
       }
+      document.body.appendChild(strip);
+      strip.addEventListener("animationend", () => { strip.remove(); });
+      setTimeout(() => { if(document.body.contains(strip)) strip.remove(); }, 3000);
     }
-    function fecharComprovante() {
-      document.getElementById("comprovantePopup").style.display = "none";
-    }
+  }
 
-    const chatIcon = document.getElementById("retroChatIcon");
-    const chatBox = document.getElementById("retroChat");
-    chatIcon.addEventListener("click", () => {
-      chatBox.style.display = chatBox.style.display === "flex" ? "none" : "flex";
-    });
+  function fecharComprovante() {
+    document.getElementById("comprovantePopup").style.display = "none";
+  }
 
-    document.getElementById("chatSend").addEventListener("click", () => {
-      const select = document.getElementById("chatOptions");
-      const value = select.value;
-      const messages = document.getElementById("chatMessages");
+  // Chat Retro WhatsApp
+  const retroChatIcon = document.getElementById("retroChatIcon");
+  const retroChat = document.getElementById("retroChat");
+  const chatSend = document.getElementById("chatSend");
+  const chatQuestions = document.getElementById("chatQuestions");
+  const chatMessages = document.getElementById("chatMessages");
 
-      if (value) {
-        let userMsg = document.createElement("div");
-        userMsg.className = "chatMsg userMsg";
-        userMsg.textContent = select.options[select.selectedIndex].text;
-        messages.appendChild(userMsg);
+  const respostas = {
+    horario: "Seg-Sáb: 13h-22h\nDomingo: 13h-20h\nMas se chegar antes ou depois... tente negociar com o Mario!",
+    broche: "Sim, apenas na loja física da Game Point",
+    parceria: "Só levar seu comprovante de compra (igual ou maior que R$200) da InfoTechStore pra comprar seus tickets!",
+    ticket: "Tire um print da confirmação de compra para precaução. Nosso sistema já é notificado da sua compra!"
+  };
 
-        let botMsg = document.createElement("div");
-        botMsg.className = "chatMsg botMsg";
-        if (value === "horarios") botMsg.textContent = "Funcionamos todos os dias das 10h às 22h.";
-        if (value === "precos") botMsg.textContent = "Os jogos custam a partir de R$5,00.";
-        if (value === "lanche") botMsg.textContent = "Sim! Temos hambúrgueres, batatas e muito mais.";
-        messages.appendChild(botMsg);
+  retroChatIcon.addEventListener("click", () => {
+    retroChat.style.display = retroChat.style.display === "none" ? "flex" : "none";
+  });
 
-        messages.scrollTop = messages.scrollHeight;
-        select.value = "";
-      }
-    });
-  </script>
+  chatSend.addEventListener("click", () => {
+    const pergunta = chatQuestions.value;
+    if (!pergunta) return;
+    // Mensagem do usuário
+    const userDiv = document.createElement("div");
+    userDiv.className = "chatMsg userMsg";
+    userDiv.textContent = chatQuestions.options[chatQuestions.selectedIndex].text;
+    chatMessages.appendChild(userDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Resposta do bot
+    setTimeout(() => {
+      const botDiv = document.createElement("div");
+      botDiv.className = "chatMsg botMsg";
+      botDiv.textContent = respostas[pergunta];
+      chatMessages.appendChild(botDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 600);
+  });
+</script>
 </body>
 </html>
